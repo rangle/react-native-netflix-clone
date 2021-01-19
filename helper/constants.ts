@@ -3,8 +3,8 @@ import {ListOptions, MediaTypes} from './types';
 export const homeLists: ListOptions[] = [
   {
     mediaType: MediaTypes.MOVIE,
-    id: 'popular Movies',
-    title: 'Popular',
+    id: 'popular',
+    title: 'Popular Movies',
   },
   {
     mediaType: MediaTypes.MOVIE,
@@ -28,7 +28,7 @@ export const homeLists: ListOptions[] = [
   },
   {
     mediaType: MediaTypes.TV,
-    id: 'now_playing',
+    id: 'on_the_air',
     title: 'Latest TV Shows',
   },
 ];
