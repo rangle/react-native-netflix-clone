@@ -6,18 +6,22 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import HorizontalList from './components/HorizontalList';
+import Billboard from './components/Billboard';
+import MovieList from './components/MovieList';
 import {homeLists} from './helper/constants';
 
 const App = () => {
   return (
-    <View style={styles.mainContainer}>
+    <View style={styles.appContainer}>
       <StatusBar barStyle="light-content" />
       <SafeAreaView>
         <ScrollView>
-          {homeLists.map((list) => (
-            <HorizontalList key={list.id + list.mediaType} data={list} />
-          ))}
+          <Billboard />
+          <View style={{paddingLeft: 4, paddingRight: 4}}>
+            {homeLists.map((list) => (
+              <MovieList key={list.title} data={list} />
+            ))}
+          </View>
         </ScrollView>
       </SafeAreaView>
     </View>
@@ -25,10 +29,10 @@ const App = () => {
 };
 
 const styles = StyleSheet.create({
-  mainContainer: {
+  appContainer: {
     backgroundColor: '#222',
-    paddingLeft: 4,
-    paddingRight: 4,
+    flex: 1,
+    height: '100%',
   },
 });
 

@@ -5,7 +5,7 @@ export enum MediaTypes {
 
 export type MediaType = MediaTypes.MOVIE | MediaTypes.TV;
 
-export interface ListOptions {
+export interface ListOption {
   mediaType: MediaType;
   id: string;
   title: string;
