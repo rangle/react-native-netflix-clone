@@ -1,9 +1,9 @@
 import {useEffect, useState} from 'react';
 import {getListUrl, getMedia} from './api';
-import {ListOption, Movie} from './types';
+import {ListOption, Media} from './types';
 
-export function useMediaList(option: ListOption): [Movie[], any] {
-  const [list, setList] = useState<Movie[]>([]);
+export function useMediaList(option: ListOption): [Media[], any] {
+  const [list, setList] = useState<Media[]>([]);
   const [error, setError] = useState<any>(null);
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {MoviesResponse, MediaType, MediaTypes} from './types';
+import {MediaResponse, MediaType, MediaTypes} from './types';
 
 const apiKey = '?api_key=8e7136c2b32f9f1008b865e9b0412842';
 const baseUrl = 'https://api.themoviedb.org/3';
@@ -13,6 +13,6 @@ export const getListUrl = (
 ) => `${baseUrl}/${mediaType}/${id}${apiKey}&language=en-US`;
 
 export async function getMedia(url: string) {
-  const {data} = await axios.get<MoviesResponse>(url);
+  const {data} = await axios.get<MediaResponse>(url);
   return data;
 }

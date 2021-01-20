@@ -11,14 +11,14 @@ export interface ListOption {
   title: string;
 }
 
-export interface MoviesResponse {
+export interface MediaResponse {
   page: number;
-  results: Movie[];
+  results: Media[];
   total_results: number;
   total_pages: number;
 }
 
-export interface Movie {
+export interface Media {
   poster_path: string;
   adult: boolean;
   overview: string;
