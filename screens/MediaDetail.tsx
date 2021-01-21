@@ -14,10 +14,16 @@ import {useAsync} from '../util/useAsync';
 import {Media} from '../types/Media.type';
 import {MediaDetail as MediaDetailType} from '../types/MediaDetail.type';
 import {MediaTypes} from '../types/MediaTypes.enum';
+import {typography} from '../styles/typography';
+import {globalStyle} from '../styles/global';
 
 const MediaDetail = (props) => {
   const item = props.item as Media;
   const {data: detail, error, run} = useAsync<MediaDetailType>(null);
+  console.log(
+    '🚀 ~ file: MediaDetail.tsx ~ line 22 ~ MediaDetail ~ detail',
+    detail,
+  );
 
   useEffect(() => {
     if (item) {
@@ -25,17 +31,17 @@ const MediaDetail = (props) => {
     }
   }, [item, run]);
 
-  const isMovie = item.mediaType === MediaTypes.MOVIE;
+  // const isMovie = item.mediaType === MediaTypes.MOVIE;
 
   return detail && !error ? (
     <View style={styles.container}>
       <SafeAreaView>
         <View style={styles.videoContainer}>
-          <VideoPlayer item={item} autoplay={true} />
+          <VideoPlayer item={item} />
         </View>
-        <ScrollView>
-          <Text>{detail.name}</Text>
-          <Text>{detail.tagline}</Text>
+        <ScrollView style={globalStyle.container}>
+          <Text style={typography.display2}>{detail.name || detail.title}</Text>
+          <Text style={typography.display6}>{detail.tagline}</Text>
           {/* <View>
             <Text>
               {new Date(
@@ -50,12 +56,12 @@ const MediaDetail = (props) => {
             title="👇 Download"
             onPress={() => console.log('Download clicked')}
           />
-          <Text>{detail.overview}</Text>
+          <Text style={typography.display6}>{detail.overview}</Text>
           <View>
-            <Text>More Like This</Text>
-            <View style={styles.recommendationsContainer}>
-              <Recommendations {...props} item={item} />
-            </View>
+            <Text style={{...typography.display4, marginBottom: 8}}>
+              More Like This
+            </Text>
+            <Recommendations {...props} item={item} />
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -80,10 +86,6 @@ const styles = StyleSheet.create({
   videoContainer: {
     height: '30%', // TODO: fix this
     backgroundColor: '#000',
-  },
-  recommendationsContainer: {
-    paddingLeft: 4,
-    paddingRight: 4,
   },
 });
 

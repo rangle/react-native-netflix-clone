@@ -1,9 +1,10 @@
 import React, {useEffect} from 'react';
 import {Image, StyleSheet, Text, TouchableHighlight, View} from 'react-native';
 import {Navigation} from 'react-native-navigation';
+import {globalStyle} from '../styles/global';
+import {Recommendation} from '../types/Recommendations.type';
 import {getImageUrl, getRecommendations} from '../util/api';
 import {useAsync} from '../util/useAsync';
-import {Recommendation} from '../types/Recommendations.type';
 
 const Recommendations = ({item, componentId}) => {
   const {data: recommendations, error, run} = useAsync<Recommendation[]>([]);
@@ -24,12 +25,12 @@ const Recommendations = ({item, componentId}) => {
           },
         })
       }>
-      <View style={styles.posterContainer}>
+      <View style={globalStyle.posterContainer}>
         <Image
           source={{
             uri: getImageUrl(item.poster_path),
           }}
-          style={styles.poster}
+          style={globalStyle.poster}
         />
       </View>
     </TouchableHighlight>
@@ -56,15 +57,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
-  },
-  posterContainer: {
-    flex: 1,
-    margin: 4,
-  },
-  poster: {
-    width: 120,
-    height: 180,
-    borderRadius: 5,
   },
 });
 

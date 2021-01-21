@@ -1,11 +1,12 @@
 import React from 'react';
 import {Button, StyleSheet, Text, View} from 'react-native';
+import {typography} from '../styles/typography';
 
 const BillboardCtrlTop = () => {
   return (
     <View style={styles.container}>
       <View style={styles.rowTop}>
-        <Text style={styles.text}>LOGO</Text>
+        <Text style={typography.display4}>LOGO</Text>
         <View style={styles.rowTop}>
           <Button
             title="📺"
@@ -55,12 +56,6 @@ const styles = StyleSheet.create({
     flex: 0,
     flexDirection: 'row',
     justifyContent: 'space-around',
-  },
-  text: {
-    fontFamily: 'Helvetica',
-    color: 'white',
-    fontWeight: '500',
-    fontSize: 16,
   },
 });
 

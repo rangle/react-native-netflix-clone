@@ -11,6 +11,8 @@ import {Navigation} from 'react-native-navigation';
 import {getImageUrl, getMediaList} from '../util/api';
 import {useAsync} from '../util/useAsync';
 import {Media} from '../types/Media.type';
+import {typography} from '../styles/typography';
+import {globalStyle} from '../styles/global';
 
 const MovieList = ({data, horizontal = true, componentId}) => {
   const {data: list, error, run} = useAsync<Media[]>(null);
@@ -23,6 +25,8 @@ const MovieList = ({data, horizontal = true, componentId}) => {
 
   const renderItem = ({item}) => (
     <TouchableHighlight
+      underlayColor="#454545"
+      style={{borderRadius: 5}}
       onPress={() =>
         Navigation.push(componentId, {
           component: {
@@ -31,12 +35,12 @@ const MovieList = ({data, horizontal = true, componentId}) => {
           },
         })
       }>
-      <View style={styles.posterContainer}>
+      <View style={globalStyle.posterContainer}>
         <Image
           source={{
             uri: getImageUrl(item.poster_path),
           }}
-          style={styles.poster}
+          style={globalStyle.poster}
         />
       </View>
     </TouchableHighlight>
@@ -45,12 +49,12 @@ const MovieList = ({data, horizontal = true, componentId}) => {
   return (
     <View style={styles.listContainer}>
       {error ? (
-        <Text style={styles.listTitle}>
+        <Text style={typography.display5}>
           Oops, there was a problem loading this list...
         </Text>
       ) : (
         <>
-          <Text style={styles.listTitle}>{data.title}</Text>
+          <Text style={typography.display4}>{data.title}</Text>
           <FlatList
             style={styles.horizontalScrollList}
             horizontal={horizontal}
@@ -71,23 +75,6 @@ const styles = StyleSheet.create({
   horizontalScrollList: {
     flex: 1,
     marginBottom: 8,
-  },
-  listTitle: {
-    fontFamily: 'Helvetica',
-    fontWeight: '600',
-    color: 'white',
-    fontSize: 20,
-    lineHeight: 26,
-    marginTop: 16,
-    marginBottom: 8,
-  },
-  posterContainer: {
-    paddingRight: 4,
-  },
-  poster: {
-    width: 120,
-    height: 180,
-    borderRadius: 5,
   },
 });
 

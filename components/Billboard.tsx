@@ -1,8 +1,9 @@
 import React, {useEffect} from 'react';
 import {ImageBackground, StyleSheet, Text, View} from 'react-native';
+import {typography} from '../styles/typography';
+import {Media} from '../types/Media.type';
 import {getImageUrl, getMediaList} from '../util/api';
 import {useAsync} from '../util/useAsync';
-import {Media} from '../types/Media.type';
 import BillboardCtrlBottom from './BillboardCtrlBottom';
 import BillboardCtrlTop from './BillboardCtrlTop';
 
@@ -20,17 +21,22 @@ const Billboard = () => {
     <View style={styles.billboard}>
       {error ? (
         <View>
-          <Text style={styles.controlText}>{error.message}</Text>
+          <Text style={typography.display5}>{error.message}</Text>
         </View>
       ) : (
         <ImageBackground
           source={{uri: getImageUrl(movie?.backdrop_path, 500)}}
           style={styles.backgroundImage}>
           <BillboardCtrlTop />
-          <Text style={styles.title} adjustsFontSizeToFit allowFontScaling>
+          <Text
+            style={typography.display1}
+            adjustsFontSizeToFit
+            allowFontScaling>
             {movie?.title}
           </Text>
-          <Text style={styles.subtitle}>#{i + 1} in Canada Today</Text>
+          <Text style={{...typography.display4, textAlign: 'center'}}>
+            #{i + 1} in Canada Today
+          </Text>
           <BillboardCtrlBottom />
         </ImageBackground>
       )}
@@ -48,27 +54,6 @@ const styles = StyleSheet.create({
     height: '100%',
     flex: 1,
     justifyContent: 'flex-end',
-  },
-  title: {
-    fontFamily: 'Helvetica',
-    color: 'white',
-    fontWeight: '900',
-    fontSize: 32,
-    textAlign: 'center',
-    lineHeight: 128,
-  },
-  subtitle: {
-    fontFamily: 'Helvetica',
-    color: 'white',
-    fontWeight: '700',
-    fontSize: 20,
-    textAlign: 'center',
-  },
-  controlText: {
-    fontFamily: 'Helvetica',
-    color: 'white',
-    fontWeight: '500',
-    fontSize: 16,
   },
 });
 
