@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 import {Image, StyleSheet, Text, TouchableHighlight, View} from 'react-native';
 import {Navigation} from 'react-native-navigation';
-import {getImageUrl, getRecommendations} from '../helper/api';
-import {useAsync} from '../helper/hooks';
+import {getImageUrl, getRecommendations} from '../util/api';
+import {useAsync} from '../util/useAsync';
 import {Recommendation} from '../types/Recommendations.type';
 
 const Recommendations = ({item, componentId}) => {

@@ -8,8 +8,9 @@ import {
   View,
 } from 'react-native';
 import Recommendations from '../components/Recommendations';
-import {getDetails} from '../helper/api';
-import {useAsync} from '../helper/hooks';
+import VideoPlayer from '../components/VideoPlayer';
+import {getDetails} from '../util/api';
+import {useAsync} from '../util/useAsync';
 import {Media} from '../types/Media.type';
 import {MediaDetail as MediaDetailType} from '../types/MediaDetail.type';
 import {MediaTypes} from '../types/MediaTypes.enum';
@@ -29,11 +30,13 @@ const MediaDetail = (props) => {
   return detail && !error ? (
     <View style={styles.container}>
       <SafeAreaView>
-        <View style={styles.videoContainer} />
+        <View style={styles.videoContainer}>
+          <VideoPlayer item={item} autoplay={true} />
+        </View>
         <ScrollView>
           <Text>{detail.name}</Text>
           <Text>{detail.tagline}</Text>
-          <View>
+          {/* <View>
             <Text>
               {new Date(
                 isMovie ? detail.release_date : detail.first_air_date,
@@ -41,7 +44,7 @@ const MediaDetail = (props) => {
             </Text>
             <Text>{isMovie ? null : detail.rating}</Text>
             <Text>{isMovie ? null : detail.type}</Text>
-          </View>
+          </View> */}
           <Button title="▶ Play" onPress={() => console.log('Play clicked')} />
           <Button
             title="👇 Download"

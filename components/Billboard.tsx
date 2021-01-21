@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {ImageBackground, StyleSheet, Text, View} from 'react-native';
-import {getImageUrl, getMediaList} from '../helper/api';
-import {useAsync} from '../helper/hooks';
+import {getImageUrl, getMediaList} from '../util/api';
+import {useAsync} from '../util/useAsync';
 import {Media} from '../types/Media.type';
 import BillboardCtrlBottom from './BillboardCtrlBottom';
 import BillboardCtrlTop from './BillboardCtrlTop';

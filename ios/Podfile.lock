@@ -76,6 +76,9 @@ PODS:
     - Folly (= 2020.01.13.00)
     - RCTRequired (= 0.63.4)
     - React-Core (= 0.63.4)
+  - RCTYouTube (2.0.1):
+    - React
+    - YoutubePlayer-in-WKWebView (~> 0.3.1)
   - React (0.63.4):
     - React-Core (= 0.63.4)
     - React-Core/DevSupport (= 0.63.4)
@@ -308,6 +311,7 @@ PODS:
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
+  - YoutubePlayer-in-WKWebView (0.3.5)
 
 DEPENDENCIES:
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
@@ -336,6 +340,7 @@ DEPENDENCIES:
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
   - RCTTypeSafety (from `../node_modules/react-native/Libraries/TypeSafety`)
+  - RCTYouTube (from `../node_modules/react-native-youtube`)
   - React (from `../node_modules/react-native/`)
   - React-callinvoker (from `../node_modules/react-native/ReactCommon/callinvoker`)
   - React-Core (from `../node_modules/react-native/`)
@@ -373,6 +378,7 @@ SPEC REPOS:
     - FlipperKit
     - OpenSSL-Universal
     - YogaKit
+    - YoutubePlayer-in-WKWebView
 
 EXTERNAL SOURCES:
   DoubleConversion:
@@ -389,6 +395,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/Libraries/RCTRequired"
   RCTTypeSafety:
     :path: "../node_modules/react-native/Libraries/TypeSafety"
+  RCTYouTube:
+    :path: "../node_modules/react-native-youtube"
   React:
     :path: "../node_modules/react-native/"
   React-callinvoker:
@@ -449,6 +457,7 @@ SPEC CHECKSUMS:
   OpenSSL-Universal: ff34003318d5e1163e9529b08470708e389ffcdd
   RCTRequired: 082f10cd3f905d6c124597fd1c14f6f2655ff65e
   RCTTypeSafety: 8c9c544ecbf20337d069e4ae7fd9a377aadf504b
+  RCTYouTube: 7ff7d42f5ed42d185198681e967fd2c2b661375d
   React: b0a957a2c44da4113b0c4c9853d8387f8e64e615
   React-callinvoker: c3f44dd3cb195b6aa46621fff95ded79d59043fe
   React-Core: d3b2a1ac9a2c13c3bcde712d9281fc1c8a5b315b
@@ -470,6 +479,7 @@ SPEC CHECKSUMS:
   ReactNativeNavigation: f32d9ba91d2a88e182b23ecabdee73d7a5ee74d1
   Yoga: 4bd86afe9883422a7c4028c00e34790f560923d6
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
+  YoutubePlayer-in-WKWebView: cfbf46da51d7370662a695a8f351e5fa1d3e1008
 
 PODFILE CHECKSUM: 420cb34ebc2460b386f32aa635dd9819a3c0b940
 

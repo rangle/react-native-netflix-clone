@@ -8,8 +8,8 @@ import {
   View,
 } from 'react-native';
 import {Navigation} from 'react-native-navigation';
-import {getImageUrl, getMediaList} from '../helper/api';
-import {useAsync} from '../helper/hooks';
+import {getImageUrl, getMediaList} from '../util/api';
+import {useAsync} from '../util/useAsync';
 import {Media} from '../types/Media.type';
 
 const MovieList = ({data, horizontal = true, componentId}) => {

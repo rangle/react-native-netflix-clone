@@ -11,10 +11,12 @@
     "react-devtools": "react-devtools"
   },
   "dependencies": {
+    "@react-native-community/hooks": "^2.6.0",
     "axios": "^0.21.1",
     "react": "16.13.1",
     "react-native": "0.63.4",
-    "react-native-navigation": "^7.8.4"
+    "react-native-navigation": "^7.8.4",
+    "react-native-youtube": "^2.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",

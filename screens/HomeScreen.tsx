@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import Billboard from '../components/Billboard';
 import MovieList from '../components/MovieList';
-import {homeLists} from '../helper/constants';
+import {homeLists} from '../util/constants';
 
 const HomeScreen = (props) => {
   return (
