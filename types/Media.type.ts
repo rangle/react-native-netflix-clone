@@ -1,15 +1,4 @@
-export enum MediaTypes {
-  TV = 'tv',
-  MOVIE = 'movie',
-}
-
-export type MediaType = MediaTypes.MOVIE | MediaTypes.TV;
-
-export interface ListOption {
-  mediaType: MediaType;
-  id: string;
-  title: string;
-}
+import {MediaTypes} from '../types/MediaTypes.enum';
 
 export interface MediaResponse {
   page: number;
@@ -33,4 +22,5 @@ export interface Media {
   vote_count: number;
   video: boolean;
   vote_average: number;
+  mediaType: MediaTypes;
 }

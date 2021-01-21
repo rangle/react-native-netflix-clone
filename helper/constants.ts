@@ -1,4 +1,5 @@
-import {ListOption, MediaTypes} from './types';
+import {ListOption} from '../types/ListOption.type';
+import {MediaTypes} from '../types/MediaTypes.enum';
 
 export const billboardMovie: ListOption = {
   mediaType: MediaTypes.MOVIE,
