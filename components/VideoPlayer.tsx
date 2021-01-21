@@ -56,7 +56,7 @@ const VideoPlayer = ({
 const styles = StyleSheet.create({
   player: {
     alignSelf: 'stretch',
-    height: 300,
+    height: '100%',
   },
 });
 

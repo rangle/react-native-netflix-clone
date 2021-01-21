@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   videoContainer: {
-    height: '30%', // TODO: fix this
+    height: '30%',
     backgroundColor: '#000',
   },
 });
