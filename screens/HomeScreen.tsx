@@ -1,6 +1,11 @@
 import React from 'react';
-import {SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
-import {Navigation} from 'react-native-navigation';
+import {
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  View,
+} from 'react-native';
 import Billboard from '../components/Billboard';
 import MovieList from '../components/MovieList';
 import {homeLists} from '../helper/constants';
@@ -8,6 +13,7 @@ import {homeLists} from '../helper/constants';
 const HomeScreen = (props) => {
   return (
     <View style={styles.homeContainer}>
+      <StatusBar barStyle="light-content" />
       <SafeAreaView>
         <ScrollView>
           <Billboard />
@@ -31,4 +37,3 @@ const styles = StyleSheet.create({
 });
 
 export default HomeScreen;
-Navigation.registerComponent('Home', () => HomeScreen);

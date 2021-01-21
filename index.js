@@ -1,7 +1,16 @@
 import {Navigation} from 'react-native-navigation';
-import App from './App';
+import HomeScreen from './screens/HomeScreen';
+import MediaDetail from './screens/MediaDetail';
 
-Navigation.registerComponent('com.myApp.WelcomeScreen', () => App);
+Navigation.registerComponent('Home', () => HomeScreen);
+Navigation.registerComponent('Detail', () => MediaDetail);
+
+Navigation.setDefaultOptions({
+  topBar: {
+    visible: false,
+  },
+});
+
 Navigation.events().registerAppLaunchedListener(() => {
   Navigation.setRoot({
     root: {
@@ -9,12 +18,7 @@ Navigation.events().registerAppLaunchedListener(() => {
         children: [
           {
             component: {
-              name: 'com.myApp.WelcomeScreen',
-              options: {
-                topBar: {
-                  visible: false,
-                },
-              },
+              name: 'Home',
             },
           },
         ],

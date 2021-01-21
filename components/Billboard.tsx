@@ -11,13 +11,12 @@ const Billboard = () => {
 
   const i = 0;
   const movie = list[i];
-  console.log('MOVIE', movie);
 
   return (
     <View style={styles.billboard}>
       {error ? (
         <View>
-          <Text style={styles.controlText}>{error}</Text>
+          <Text style={styles.controlText}>{error.message}</Text>
         </View>
       ) : (
         <ImageBackground

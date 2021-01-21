@@ -1,21 +1,39 @@
 import React from 'react';
-import {FlatList, Image, StyleSheet, Text, View} from 'react-native';
+import {
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+  View,
+} from 'react-native';
+import {Navigation} from 'react-native-navigation';
 import {getImageUrl} from '../helper/api';
 import {useMediaList} from '../helper/hooks';
 
-const renderItem = ({item}) => (
-  <View style={styles.posterContainer}>
-    <Image
-      source={{
-        uri: getImageUrl(item.poster_path),
-      }}
-      style={styles.poster}
-    />
-  </View>
-);
-
-const MovieList = ({data, horizontal = true}) => {
+const MovieList = ({data, horizontal = true, componentId}) => {
   const [list, error] = useMediaList(data);
+
+  const renderItem = ({item}) => (
+    <TouchableHighlight
+      onPress={() =>
+        Navigation.push(componentId, {
+          component: {
+            name: 'Detail',
+            passProps: {item},
+          },
+        })
+      }>
+      <View style={styles.posterContainer}>
+        <Image
+          source={{
+            uri: getImageUrl(item.poster_path),
+          }}
+          style={styles.poster}
+        />
+      </View>
+    </TouchableHighlight>
+  );
 
   return (
     <View style={styles.listContainer}>
@@ -60,8 +78,9 @@ const styles = StyleSheet.create({
     paddingRight: 4,
   },
   poster: {
-    width: 100,
-    height: 150,
+    width: 120,
+    height: 180,
+    borderRadius: 5,
   },
 });
 

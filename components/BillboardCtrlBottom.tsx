@@ -5,7 +5,7 @@ const BillboardCtrlBottom = () => {
   return (
     <View style={styles.controlsContainer}>
       <View style={styles.controlContainer}>
-        <Text style={styles.controlText}>+</Text>
+        <Text style={{...styles.controlText, fontSize: 26}}>+</Text>
         <Text style={styles.controlText}>My List</Text>
       </View>
       <View style={styles.playBtnContainer}>
@@ -16,7 +16,7 @@ const BillboardCtrlBottom = () => {
         />
       </View>
       <View style={styles.controlContainer}>
-        <Text style={styles.controlText}>ℹ</Text>
+        <Text style={{...styles.controlText, fontSize: 26}}>ℹ</Text>
         <Text style={styles.controlText}>Info</Text>
       </View>
     </View>
