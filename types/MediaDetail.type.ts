@@ -17,7 +17,6 @@ interface MediaDetailBase {
   tagline: string;
   vote_average: number;
   vote_count: number;
-  recommendations: any;
 }
 
 export interface MovieDetail extends MediaDetailBase {

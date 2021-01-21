@@ -1,12 +1,6 @@
 import {ListOption} from '../types/ListOption.type';
 import {MediaTypes} from '../types/MediaTypes.enum';
 
-export const billboardMovie: ListOption = {
-  mediaType: MediaTypes.MOVIE,
-  id: 'popular',
-  title: 'Billboard',
-};
-
 export const homeLists: ListOption[] = [
   {
     mediaType: MediaTypes.MOVIE,

@@ -1,57 +1,44 @@
-import {useEffect, useState} from 'react';
-import {ListOption} from '../types/ListOption.type';
-import {Media} from '../types/Media.type';
-import {MediaDetail} from './../types/MediaDetail.type';
-import {Recommendation} from './../types/Recommendations.type';
-import {getDetails, getMediaList, getRecommendations} from './api';
+import {useCallback, useLayoutEffect, useRef, useState} from 'react';
 
-export function useMediaList(option: ListOption): [Media[], any] {
-  const [list, setList] = useState<Media[]>([]);
+export function useAsync<T>(
+  initialState,
+): {data: T; error: any; run: (promise: Promise<T>) => void} {
+  const [data, setData] = useState<T>(initialState);
   const [error, setError] = useState<any>(null);
 
-  useEffect(() => {
-    getMediaList(option.mediaType, option.id)
-      .then(({results}) => {
-        const data = results.map((media) => ({
-          ...media,
-          mediaType: option.mediaType || null,
-        }));
-        setList(data);
-        setError(null);
-      })
-      .catch(setError);
-  }, [option]);
-  return [list, error];
+  const safeSetData = useSafeSetter(setData);
+  const safeSetError = useSafeSetter(setError);
+
+  const run = useCallback(
+    (promise: Promise<T>) => {
+      promise.then(safeSetData).catch(safeSetError);
+    },
+    [safeSetData, safeSetError],
+  );
+
+  return {
+    data,
+    error,
+    run,
+  };
 }
 
-export function useItemDetail(item: Media): [MediaDetail, any] {
-  const [detail, setDetail] = useState<MediaDetail>({} as any);
-  const [error, setError] = useState<any>(null);
+function useSafeSetter(dispatch) {
+  const mountedRef = useRef(false);
 
-  useEffect(() => {
-    getDetails(item)
-      .then(([details, rating]) => {
-        setDetail({...details, rating});
-        setError(null);
-      })
-      .catch(setError);
-  }, [item]);
+  useLayoutEffect(() => {
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+    };
+  }, []);
 
-  return [detail, error];
-}
-
-export function useRecommendations(item: Media): [Recommendation[], any] {
-  const [recommendation, setRecommendation] = useState<Recommendation[]>([]);
-  const [error, setError] = useState<any>(null);
-
-  useEffect(() => {
-    getRecommendations(item)
-      .then((recommendations) => {
-        setRecommendation(recommendations);
-        setError(null);
-      })
-      .catch(setError);
-  }, [item]);
-
-  return [recommendation, error];
+  return useCallback(
+    (...args) => {
+      if (mountedRef.current) {
+        dispatch(...args);
+      }
+    },
+    [dispatch],
+  );
 }

@@ -1,13 +1,17 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {ImageBackground, StyleSheet, Text, View} from 'react-native';
-import {getImageUrl} from '../helper/api';
-import {billboardMovie} from '../helper/constants';
-import {useMediaList} from '../helper/hooks';
+import {getImageUrl, getMediaList} from '../helper/api';
+import {useAsync} from '../helper/hooks';
+import {Media} from '../types/Media.type';
 import BillboardCtrlBottom from './BillboardCtrlBottom';
 import BillboardCtrlTop from './BillboardCtrlTop';
 
 const Billboard = () => {
-  const [list, error] = useMediaList(billboardMovie);
+  const {data: list, error, run} = useAsync<Media[]>([]);
+
+  useEffect(() => {
+    run(getMediaList());
+  }, [run]);
 
   const i = 0;
   const movie = list[i];

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   FlatList,
   Image,
@@ -8,11 +8,18 @@ import {
   View,
 } from 'react-native';
 import {Navigation} from 'react-native-navigation';
-import {getImageUrl} from '../helper/api';
-import {useMediaList} from '../helper/hooks';
+import {getImageUrl, getMediaList} from '../helper/api';
+import {useAsync} from '../helper/hooks';
+import {Media} from '../types/Media.type';
 
 const MovieList = ({data, horizontal = true, componentId}) => {
-  const [list, error] = useMediaList(data);
+  const {data: list, error, run} = useAsync<Media[]>(null);
+
+  useEffect(() => {
+    if (data) {
+      run(getMediaList(data.mediaType, data.id));
+    }
+  }, [data, run]);
 
   const renderItem = ({item}) => (
     <TouchableHighlight

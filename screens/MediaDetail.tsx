@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   Button,
   SafeAreaView,
@@ -8,14 +8,21 @@ import {
   View,
 } from 'react-native';
 import Recommendations from '../components/Recommendations';
-import {useItemDetail} from '../helper/hooks';
+import {getDetails} from '../helper/api';
+import {useAsync} from '../helper/hooks';
 import {Media} from '../types/Media.type';
+import {MediaDetail as MediaDetailType} from '../types/MediaDetail.type';
 import {MediaTypes} from '../types/MediaTypes.enum';
 
 const MediaDetail = (props) => {
   const item = props.item as Media;
-  const [detail, error] = useItemDetail(item);
-  console.log({detail});
+  const {data: detail, error, run} = useAsync<MediaDetailType>(null);
+
+  useEffect(() => {
+    if (item) {
+      run(getDetails(item));
+    }
+  }, [item, run]);
 
   const isMovie = item.mediaType === MediaTypes.MOVIE;
 
@@ -43,7 +50,7 @@ const MediaDetail = (props) => {
           <Text>{detail.overview}</Text>
           <View>
             <Text>More Like This</Text>
-            <View style={{paddingLeft: 4, paddingRight: 4}}>
+            <View style={styles.recommendationsContainer}>
               <Recommendations {...props} item={item} />
             </View>
           </View>
@@ -70,6 +77,10 @@ const styles = StyleSheet.create({
   videoContainer: {
     height: '30%', // TODO: fix this
     backgroundColor: '#000',
+  },
+  recommendationsContainer: {
+    paddingLeft: 4,
+    paddingRight: 4,
   },
 });
 

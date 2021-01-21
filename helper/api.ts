@@ -18,14 +18,22 @@ export const getImageUrl = (pathSuffix, width: number = 200) =>
 export function getMediaList(
   mediaType: MediaType = MediaTypes.MOVIE,
   id: string = 'popular',
-) {
+): Promise<Media[]> {
   const url = `${baseUrl}/${mediaType}/${id}${apiKey}&language=en-US`;
-  return get<MediaResponse>(url);
+  return get<MediaResponse>(url).then(({results}) => {
+    return results.map((media) => ({
+      ...media,
+      mediaType: mediaType || null,
+    }));
+  });
 }
 
 export function getDetails(item: Media) {
   const isTv = item.mediaType === MediaTypes.TV;
-  return Promise.all([getBaseDetails(item), isTv ? getRating(item) : null]);
+  return Promise.all([
+    getBaseDetails(item),
+    isTv ? getRating(item) : null,
+  ]).then(([details, rating]) => ({...details, rating: rating as string}));
 }
 
 export function getBaseDetails(item: Media) {

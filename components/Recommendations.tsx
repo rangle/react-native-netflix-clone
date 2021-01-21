@@ -1,11 +1,18 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Image, StyleSheet, Text, TouchableHighlight, View} from 'react-native';
 import {Navigation} from 'react-native-navigation';
-import {getImageUrl} from '../helper/api';
-import {useRecommendations} from '../helper/hooks';
+import {getImageUrl, getRecommendations} from '../helper/api';
+import {useAsync} from '../helper/hooks';
+import {Recommendation} from '../types/Recommendations.type';
 
 const Recommendations = ({item, componentId}) => {
-  const [recommendations, error] = useRecommendations(item);
+  const {data: recommendations, error, run} = useAsync<Recommendation[]>([]);
+
+  useEffect(() => {
+    if (item) {
+      run(getRecommendations(item));
+    }
+  }, [item, run]);
 
   const RecommendationCard = ({item}) => (
     <TouchableHighlight
@@ -35,7 +42,7 @@ const Recommendations = ({item, componentId}) => {
       ) : (
         <View style={styles.listContainer}>
           {recommendations.map((el) => (
-            <RecommendationCard item={el} />
+            <RecommendationCard key={el.id} item={el} />
           ))}
         </View>
       )}
@@ -48,7 +55,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-evenly',
+    justifyContent: 'center',
   },
   posterContainer: {
     flex: 1,
