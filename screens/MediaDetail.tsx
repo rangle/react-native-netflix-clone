@@ -31,7 +31,7 @@ const MediaDetail = (props) => {
 
   return detail && !error ? (
     <View style={styles.container}>
-      <SafeAreaView>
+      <SafeAreaView style={{flex: 1}}>
         <View style={styles.videoContainer}>
           <VideoPlayer item={item} />
         </View>

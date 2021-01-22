@@ -41,7 +41,7 @@ const Recommendations = ({item, componentId}) => {
       {error ? (
         <Text>Oops, there was a problem loading recommendations...</Text>
       ) : (
-        <View style={styles.listContainer}>
+        <View style={{...styles.listContainer, justifyContent: 'space-evenly'}}>
           {recommendations.map((el) => (
             <RecommendationCard key={el.id} item={el} />
           ))}
