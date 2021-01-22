@@ -1,12 +1,20 @@
 import React, {useEffect} from 'react';
 import {Image, StyleSheet, Text, TouchableHighlight, View} from 'react-native';
-import {Navigation} from 'react-native-navigation';
+import {Navigation, NavigationFunctionComponent} from 'react-native-navigation';
 import {globalStyle} from '../styles/global';
+import {Media} from '../types/Media.type';
 import {Recommendation} from '../types/Recommendations.type';
 import {getImageUrl, getRecommendations} from '../util/api';
 import {useAsync} from '../util/useAsync';
 
-const Recommendations = ({item, componentId}) => {
+interface Props {
+  item: Media;
+}
+
+const Recommendations: NavigationFunctionComponent<Props> = ({
+  item,
+  componentId,
+}) => {
   const {data: recommendations, error, run} = useAsync<Recommendation[]>([]);
 
   useEffect(() => {

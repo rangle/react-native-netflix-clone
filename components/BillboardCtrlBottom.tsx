@@ -1,8 +1,18 @@
 import React from 'react';
 import {Button, StyleSheet, Text, View} from 'react-native';
+import {Navigation, NavigationFunctionComponent} from 'react-native-navigation';
+import {charcoal} from '../styles/colors';
 import {typography} from '../styles/typography';
+import {Media} from '../types/Media.type';
 
-const BillboardCtrlBottom = () => {
+interface Props {
+  item: Media;
+}
+
+const BillboardCtrlBottom: NavigationFunctionComponent<Props> = ({
+  item,
+  componentId,
+}) => {
   return (
     <View style={styles.controlsContainer}>
       <View style={styles.controlContainer}>
@@ -12,8 +22,15 @@ const BillboardCtrlBottom = () => {
       <View style={styles.playBtnContainer}>
         <Button
           title="▶ Play"
-          onPress={() => console.log('clicked...')}
-          color="#000"
+          onPress={() =>
+            Navigation.push(componentId, {
+              component: {
+                name: 'Player',
+                passProps: {item, autoplay: true},
+              },
+            })
+          }
+          color={charcoal}
         />
       </View>
       <View style={styles.controlContainer}>

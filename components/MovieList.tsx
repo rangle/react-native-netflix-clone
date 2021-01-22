@@ -1,20 +1,24 @@
 import React, {useEffect} from 'react';
-import {
-  FlatList,
-  Image,
-  StyleSheet,
-  Text,
-  TouchableHighlight,
-  View,
-} from 'react-native';
-import {Navigation} from 'react-native-navigation';
+import {FlatList, Image, Text, TouchableHighlight, View} from 'react-native';
+import {Navigation, NavigationFunctionComponent} from 'react-native-navigation';
+import {slateGray} from '../styles/colors';
+import {globalStyle} from '../styles/global';
+import {typography} from '../styles/typography';
+import {ListOption} from '../types/ListOption.type';
+import {Media} from '../types/Media.type';
 import {getImageUrl, getMediaList} from '../util/api';
 import {useAsync} from '../util/useAsync';
-import {Media} from '../types/Media.type';
-import {typography} from '../styles/typography';
-import {globalStyle} from '../styles/global';
 
-const MovieList = ({data, horizontal = true, componentId}) => {
+interface Props {
+  data: ListOption;
+  horizontal?: boolean;
+}
+
+const MovieList: NavigationFunctionComponent<Props> = ({
+  data,
+  horizontal = true,
+  componentId,
+}) => {
   const {data: list, error, run} = useAsync<Media[]>(null);
 
   useEffect(() => {
@@ -25,7 +29,7 @@ const MovieList = ({data, horizontal = true, componentId}) => {
 
   const renderItem = ({item}) => (
     <TouchableHighlight
-      underlayColor="#454545"
+      underlayColor={slateGray}
       style={{borderRadius: 5}}
       onPress={() =>
         Navigation.push(componentId, {
@@ -46,36 +50,22 @@ const MovieList = ({data, horizontal = true, componentId}) => {
     </TouchableHighlight>
   );
 
-  return (
-    <View style={styles.listContainer}>
-      {error ? (
-        <Text style={typography.display5}>
-          Oops, there was a problem loading this list...
-        </Text>
-      ) : (
-        <>
-          <Text style={typography.display4}>{data.title}</Text>
-          <FlatList
-            style={styles.horizontalScrollList}
-            horizontal={horizontal}
-            data={list}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id + ''}
-          />
-        </>
-      )}
-    </View>
+  return error ? (
+    <Text style={typography.display5}>
+      Oops, there was a problem loading this list...
+    </Text>
+  ) : (
+    <>
+      <Text style={typography.display4}>{data.title}</Text>
+      <FlatList
+        style={{marginBottom: 8}}
+        horizontal={horizontal}
+        data={list}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id + ''}
+      />
+    </>
   );
 };
-
-const styles = StyleSheet.create({
-  listContainer: {
-    flex: 1,
-  },
-  horizontalScrollList: {
-    flex: 1,
-    marginBottom: 8,
-  },
-});
 
 export default MovieList;

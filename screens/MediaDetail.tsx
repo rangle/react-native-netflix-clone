@@ -9,13 +9,13 @@ import {
 } from 'react-native';
 import Recommendations from '../components/Recommendations';
 import VideoPlayer from '../components/VideoPlayer';
-import {getDetails} from '../util/api';
-import {useAsync} from '../util/useAsync';
+import {black, charcoal} from '../styles/colors';
+import {globalStyle} from '../styles/global';
+import {typography} from '../styles/typography';
 import {Media} from '../types/Media.type';
 import {MediaDetail as MediaDetailType} from '../types/MediaDetail.type';
-import {MediaTypes} from '../types/MediaTypes.enum';
-import {typography} from '../styles/typography';
-import {globalStyle} from '../styles/global';
+import {getDetails} from '../util/api';
+import {useAsync} from '../util/useAsync';
 
 const MediaDetail = (props) => {
   const item = props.item as Media;
@@ -35,7 +35,7 @@ const MediaDetail = (props) => {
         <View style={styles.videoContainer}>
           <VideoPlayer item={item} />
         </View>
-        <ScrollView style={globalStyle.container} centerContent={true}>
+        <ScrollView contentContainerStyle={globalStyle.container}>
           <Text style={typography.display2}>{detail.name || detail.title}</Text>
           <Text style={typography.display6}>{detail.tagline}</Text>
           {/* <View>
@@ -53,7 +53,7 @@ const MediaDetail = (props) => {
             onPress={() => console.log('Download clicked')}
           />
           <Text style={typography.display6}>{detail.overview}</Text>
-          <View>
+          <View style={{flex: 1}}>
             <Text style={{...typography.display4, marginBottom: 8}}>
               More Like This
             </Text>
@@ -69,19 +69,20 @@ MediaDetail.options = {
   topBar: {
     visible: true,
     background: {
-      color: '#222',
+      color: charcoal,
     },
   },
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#222',
+    backgroundColor: charcoal,
     flex: 1,
   },
   videoContainer: {
     height: '30%',
-    backgroundColor: '#000',
+    minHeight: 200,
+    backgroundColor: black,
   },
 });
 

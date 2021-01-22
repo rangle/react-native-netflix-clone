@@ -1,23 +1,26 @@
 import {useDeviceOrientation} from '@react-native-community/hooks';
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text} from 'react-native';
+import {ActivityIndicator, StyleSheet, Text, View} from 'react-native';
 import YouTube from 'react-native-youtube';
+import {red} from '../styles/colors';
 import {Media} from '../types/Media.type';
 import {Video} from '../types/Video.type';
 import {getVideos} from '../util/api';
 import {useAsync} from '../util/useAsync';
 
-interface VideoPlayerProps {
+interface Props {
   item: Media;
   autoplay?: boolean;
   autoFullscreen?: boolean;
+  showFullscreenButton?: boolean;
 }
 
 const VideoPlayer = ({
   item,
   autoplay = false,
   autoFullscreen = false,
-}: VideoPlayerProps) => {
+  showFullscreenButton = true,
+}: Props) => {
   const {data: videos, error, run} = useAsync<Video[]>([]);
   const [status, setStatus] = useState('paused');
   const [fullscreen, setFullscreen] = useState(autoFullscreen);
@@ -42,6 +45,11 @@ const VideoPlayer = ({
       videoId={video.key}
       play={status === 'playing' || autoplay}
       fullscreen={fullscreen}
+      showFullscreenButton={showFullscreenButton}
+      controls={2}
+      modestbranding={true}
+      showinfo={false}
+      rel={false}
       style={styles.player}
       onChangeState={(e) => setStatus(e.state)}
       onChangeFullscreen={(e) => setFullscreen(e.isFullscreen)}
@@ -49,7 +57,9 @@ const VideoPlayer = ({
   ) : error ? (
     <Text>Error: {error.message}</Text>
   ) : (
-    <Text>Loading...</Text>
+    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <ActivityIndicator size={fullscreen ? 'large' : 'small'} color={red} />
+    </View>
   );
 };
 

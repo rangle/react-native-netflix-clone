@@ -1,5 +1,6 @@
 import React from 'react';
 import {Button, StyleSheet, Text, View} from 'react-native';
+import {white} from '../styles/colors';
 import {typography} from '../styles/typography';
 
 const BillboardCtrlTop = () => {
@@ -10,12 +11,12 @@ const BillboardCtrlTop = () => {
         <View style={styles.rowTop}>
           <Button
             title="📺"
-            color="#fff"
+            color={white}
             onPress={() => console.log('📺 clicked')}
           />
           <Button
             title="🐨"
-            color="#fff"
+            color={white}
             onPress={() => console.log('🐨 clicked')}
           />
         </View>
@@ -23,17 +24,17 @@ const BillboardCtrlTop = () => {
       <View style={styles.rowBottom}>
         <Button
           title="TV Shows"
-          color="#fff"
+          color={white}
           onPress={() => console.log('TV Shows clicked')}
         />
         <Button
           title="Movies"
-          color="#fff"
+          color={white}
           onPress={() => console.log('Movies clicked')}
         />
         <Button
           title="Categories"
-          color="#fff"
+          color={white}
           onPress={() => console.log('Categories clicked')}
         />
       </View>

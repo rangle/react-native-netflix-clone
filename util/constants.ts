@@ -14,16 +14,6 @@ export const homeLists: ListOption[] = [
   },
   {
     mediaType: MediaTypes.MOVIE,
-    id: 'top_rated',
-    title: 'Top Rated Movies',
-  },
-  {
-    mediaType: MediaTypes.TV,
-    id: 'top_rated',
-    title: 'Top Rated TV Shows',
-  },
-  {
-    mediaType: MediaTypes.MOVIE,
     id: 'now_playing',
     title: 'Latest Movies',
   },
@@ -31,5 +21,15 @@ export const homeLists: ListOption[] = [
     mediaType: MediaTypes.TV,
     id: 'on_the_air',
     title: 'Latest TV Shows',
+  },
+  {
+    mediaType: MediaTypes.MOVIE,
+    id: 'top_rated',
+    title: 'Top Rated Movies',
+  },
+  {
+    mediaType: MediaTypes.TV,
+    id: 'top_rated',
+    title: 'Top Rated TV Shows',
   },
 ];

@@ -8,7 +8,6 @@ export const globalStyle = StyleSheet.create({
     paddingLeft: 8,
   },
   posterContainer: {
-    flex: 1,
     padding: 4,
   },
   poster: {

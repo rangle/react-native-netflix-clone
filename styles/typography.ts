@@ -1,8 +1,9 @@
 import {StyleSheet} from 'react-native';
+import {white} from './colors';
 
 export const baseTextStyles = {
   fontFamily: 'Helvetica',
-  color: '#fff',
+  color: white,
 };
 
 export const typography = StyleSheet.create({
