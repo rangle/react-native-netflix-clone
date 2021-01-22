@@ -3,9 +3,9 @@ import FullPlayer from './screens/FullPlayer';
 import HomeScreen from './screens/HomeScreen';
 import MediaDetail from './screens/MediaDetail';
 
-Navigation.registerComponent('Home', () => HomeScreen);
-Navigation.registerComponent('Detail', () => MediaDetail);
-Navigation.registerComponent('Player', () => FullPlayer);
+Navigation.registerComponent('com.netflixClone.Home', () => HomeScreen);
+Navigation.registerComponent('com.netflixClone.Detail', () => MediaDetail);
+Navigation.registerComponent('com.netflixClone.Player', () => FullPlayer);
 
 Navigation.setDefaultOptions({
   topBar: {
@@ -20,7 +20,7 @@ Navigation.events().registerAppLaunchedListener(() => {
         children: [
           {
             component: {
-              name: 'Home',
+              name: 'com.netflixClone.Home',
             },
           },
         ],

@@ -34,7 +34,7 @@ const MovieList: NavigationFunctionComponent<Props> = ({
       onPress={() =>
         Navigation.push(componentId, {
           component: {
-            name: 'Detail',
+            name: 'com.netflixClone.Detail',
             passProps: {item},
           },
         })

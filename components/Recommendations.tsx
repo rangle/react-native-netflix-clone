@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {Image, StyleSheet, Text, TouchableHighlight, View} from 'react-native';
 import {Navigation, NavigationFunctionComponent} from 'react-native-navigation';
+import {slateGray} from '../styles/colors';
 import {globalStyle} from '../styles/global';
 import {Media} from '../types/Media.type';
 import {Recommendation} from '../types/Recommendations.type';
@@ -25,10 +26,11 @@ const Recommendations: NavigationFunctionComponent<Props> = ({
 
   const RecommendationCard = ({item}) => (
     <TouchableHighlight
+      underlayColor={slateGray}
       onPress={() =>
-        Navigation.push(componentId, {
+        Navigation.push<Props>(componentId, {
           component: {
-            name: 'Detail',
+            name: 'com.netflixClone.Detail',
             passProps: {item},
           },
         })

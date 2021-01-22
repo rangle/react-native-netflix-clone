@@ -25,7 +25,7 @@ const BillboardCtrlBottom: NavigationFunctionComponent<Props> = ({
           onPress={() =>
             Navigation.push(componentId, {
               component: {
-                name: 'Player',
+                name: 'com.netflixClone.Player',
                 passProps: {item, autoplay: true},
               },
             })

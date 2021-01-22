@@ -7,6 +7,7 @@ import {
   Text,
   View,
 } from 'react-native';
+import {Navigation} from 'react-native-navigation';
 import Recommendations from '../components/Recommendations';
 import VideoPlayer from '../components/VideoPlayer';
 import {black, charcoal} from '../styles/colors';
@@ -33,7 +34,7 @@ const MediaDetail = (props) => {
     <View style={styles.container}>
       <SafeAreaView style={{flex: 1}}>
         <View style={styles.videoContainer}>
-          <VideoPlayer item={item} />
+          <VideoPlayer item={item} autoplay={true} />
         </View>
         <ScrollView contentContainerStyle={globalStyle.container}>
           <Text style={typography.display2}>{detail.name || detail.title}</Text>
@@ -47,7 +48,17 @@ const MediaDetail = (props) => {
             <Text>{isMovie ? null : detail.rating}</Text>
             <Text>{isMovie ? null : detail.type}</Text>
           </View> */}
-          <Button title="▶ Play" onPress={() => console.log('Play clicked')} />
+          <Button
+            title="▶ Play"
+            onPress={() =>
+              Navigation.push(props.componentId, {
+                component: {
+                  name: 'com.netflixClone.Player',
+                  passProps: {item},
+                },
+              })
+            }
+          />
           <Button
             title="👇 Download"
             onPress={() => console.log('Download clicked')}
