@@ -1,13 +1,7 @@
 import React, {useEffect} from 'react';
-import {
-  Button,
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {Navigation} from 'react-native-navigation';
+import Button from '../components/Button';
 import Recommendations from '../components/Recommendations';
 import VideoPlayer from '../components/VideoPlayer';
 import {black, charcoal} from '../styles/colors';
@@ -48,22 +42,22 @@ const MediaDetail = (props) => {
             <Text>{isMovie ? null : detail.rating}</Text>
             <Text>{isMovie ? null : detail.type}</Text>
           </View> */}
-          <Button
-            title="▶ Play"
-            onPress={() =>
-              Navigation.push(props.componentId, {
-                component: {
-                  name: 'com.netflixClone.Player',
-                  passProps: {item},
-                },
-              })
-            }
-          />
-          <Button
-            title="👇 Download"
-            onPress={() => console.log('Download clicked')}
-          />
-          <Text style={typography.display6}>{detail.overview}</Text>
+          <View style={{marginTop: 16, marginBottom: 16}}>
+            <Button
+              title="▶ Play"
+              onPress={() =>
+                Navigation.push(props.componentId, {
+                  component: {
+                    name: 'com.netflixClone.Player',
+                    passProps: {item},
+                  },
+                })
+              }
+            />
+          </View>
+          <View style={{}}>
+            <Text style={typography.display6}>{detail.overview}</Text>
+          </View>
           <View style={{flex: 1}}>
             <Text style={{...typography.display4, marginBottom: 8}}>
               More Like This

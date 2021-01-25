@@ -1,40 +1,32 @@
 import React from 'react';
-import {Button, StyleSheet, Text, View} from 'react-native';
-import {white} from '../styles/colors';
+import {StyleSheet, Text, View} from 'react-native';
+import Button from '../components/Button';
 import {typography} from '../styles/typography';
 
 const BillboardCtrlTop = () => {
   return (
     <View style={styles.container}>
-      <View style={styles.rowTop}>
+      <View style={styles.rowTop1}>
         <Text style={typography.display4}>LOGO</Text>
-        <View style={styles.rowTop}>
-          <Button
-            title="📺"
-            color={white}
-            onPress={() => console.log('📺 clicked')}
-          />
-          <Button
-            title="🐨"
-            color={white}
-            onPress={() => console.log('🐨 clicked')}
-          />
+        <View style={styles.rowTop2}>
+          <Button title="📺" link onPress={() => console.log('📺 clicked')} />
+          <Button title="🐨" link onPress={() => console.log('🐨 clicked')} />
         </View>
       </View>
       <View style={styles.rowBottom}>
         <Button
           title="TV Shows"
-          color={white}
+          link
           onPress={() => console.log('TV Shows clicked')}
         />
         <Button
           title="Movies"
-          color={white}
+          link
           onPress={() => console.log('Movies clicked')}
         />
         <Button
           title="Categories"
-          color={white}
+          link
           onPress={() => console.log('Categories clicked')}
         />
       </View>
@@ -46,12 +38,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  rowTop: {
+  rowTop1: {
     flex: 0,
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingLeft: 16,
-    paddingRight: 16,
+  },
+  rowTop2: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    flexDirection: 'row',
   },
   rowBottom: {
     flex: 0,

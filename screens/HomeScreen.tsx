@@ -10,6 +10,7 @@ import {NavigationFunctionComponent} from 'react-native-navigation';
 import Billboard from '../components/Billboard';
 import MovieList from '../components/MovieList';
 import {charcoal} from '../styles/colors';
+import {globalStyle} from '../styles/global';
 import {homeLists} from '../util/constants';
 
 const HomeScreen: NavigationFunctionComponent<{}> = (props) => {
@@ -19,7 +20,7 @@ const HomeScreen: NavigationFunctionComponent<{}> = (props) => {
       <SafeAreaView>
         <ScrollView>
           <Billboard {...props} />
-          <View style={{flex: 3, paddingLeft: 4, paddingRight: 4}}>
+          <View style={{...globalStyle.container, flex: 3}}>
             {homeLists.map((list) => (
               <MovieList key={list.title} {...props} data={list} />
             ))}

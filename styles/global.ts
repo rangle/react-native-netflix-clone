@@ -2,13 +2,13 @@ import {StyleSheet} from 'react-native';
 
 export const globalStyle = StyleSheet.create({
   container: {
-    paddingTop: 4,
-    paddingBottom: 4,
-    paddingRight: 8,
-    paddingLeft: 8,
+    paddingTop: 8,
+    paddingBottom: 8,
+    paddingRight: 16,
+    paddingLeft: 16,
   },
   posterContainer: {
-    padding: 4,
+    padding: 2,
   },
   poster: {
     width: 120,
