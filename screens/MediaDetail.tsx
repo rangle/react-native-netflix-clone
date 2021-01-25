@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
-import {Navigation} from 'react-native-navigation';
+import {Navigation, NavigationFunctionComponent} from 'react-native-navigation';
 import Button from '../components/Button';
 import Recommendations from '../components/Recommendations';
 import VideoPlayer from '../components/VideoPlayer';
@@ -12,17 +12,20 @@ import {MediaDetail as MediaDetailType} from '../types/MediaDetail.type';
 import {getDetails} from '../util/api';
 import {useAsync} from '../util/useAsync';
 
-const MediaDetail = (props) => {
-  const item = props.item as Media;
+interface Props {
+  item: Media;
+}
+
+const MediaDetail: NavigationFunctionComponent<Props> = (props) => {
   const {data: detail, error, run} = useAsync<MediaDetailType>(null);
+
+  const {item, componentId} = props;
 
   useEffect(() => {
     if (item) {
       run(getDetails(item));
     }
   }, [item, run]);
-
-  // const isMovie = item.mediaType === MediaTypes.MOVIE;
 
   return detail && !error ? (
     <View style={styles.container}>
@@ -33,20 +36,11 @@ const MediaDetail = (props) => {
         <ScrollView contentContainerStyle={globalStyle.container}>
           <Text style={typography.display2}>{detail.name || detail.title}</Text>
           <Text style={typography.display6}>{detail.tagline}</Text>
-          {/* <View>
-            <Text>
-              {new Date(
-                isMovie ? detail.release_date : detail.first_air_date,
-              ).getFullYear()}
-            </Text>
-            <Text>{isMovie ? null : detail.rating}</Text>
-            <Text>{isMovie ? null : detail.type}</Text>
-          </View> */}
           <View style={{marginTop: 16, marginBottom: 16}}>
             <Button
               title="▶ Play"
               onPress={() =>
-                Navigation.push(props.componentId, {
+                Navigation.push(componentId, {
                   component: {
                     name: 'com.netflixClone.Player',
                     passProps: {item},
@@ -59,7 +53,8 @@ const MediaDetail = (props) => {
             <Text style={typography.display6}>{detail.overview}</Text>
           </View>
           <View style={{flex: 1}}>
-            <Text style={{...typography.display4, marginBottom: 8}}>
+            <Text
+              style={{...typography.display4, marginTop: 16, marginBottom: 8}}>
               More Like This
             </Text>
             <Recommendations {...props} item={item} />
