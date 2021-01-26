@@ -4,7 +4,7 @@ import FullPlayer from './screens/FullPlayer';
 import HomeScreen from './screens/HomeScreen';
 import MediaDetail from './screens/MediaDetail';
 import Search from './screens/Search';
-import {black, white, slateGray} from './styles/colors';
+import {charcoal, slateGray, white} from './styles/colors';
 
 Orientation.lockToPortrait();
 
@@ -20,11 +20,11 @@ Navigation.setDefaultOptions({
   bottomTabs: {
     barStyle: 'black',
     visible: true,
-    backgroundColor: black,
+    backgroundColor: charcoal,
   },
   bottomTab: {
-    selectedTextColor: slateGray,
-    textColor: white,
+    selectedTextColor: white,
+    textColor: slateGray,
     fontSize: 14,
     selectedFontSize: 14,
   },
