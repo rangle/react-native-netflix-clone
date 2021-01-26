@@ -31,6 +31,12 @@ const HomeScreen: NavigationFunctionComponent<{}> = (props) => {
   );
 };
 
+HomeScreen.options = {
+  bottomTab: {
+    text: 'Home',
+  },
+};
+
 const styles = StyleSheet.create({
   homeContainer: {
     backgroundColor: charcoal,

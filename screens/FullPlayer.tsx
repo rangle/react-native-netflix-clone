@@ -26,10 +26,8 @@ const FullPlayer: NavigationFunctionComponent<Props> = ({item}) => {
 };
 
 FullPlayer.options = {
-  topBar: {
-    title: {
-      text: 'Player',
-    },
+  bottomTabs: {
+    visible: false,
   },
 };
 
