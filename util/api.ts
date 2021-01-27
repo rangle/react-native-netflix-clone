@@ -1,13 +1,13 @@
 import axios from 'axios';
-import {ContentRatingResponse} from '../types/ContentRating.type';
-import {Media, MediaResponse} from '../types/Media.type';
+import {ContentRating} from '../types/ContentRating.type';
+import {Media} from '../types/Media.type';
 import {MediaDetail} from '../types/MediaDetail.type';
 import {MediaType, MediaTypes} from '../types/MediaTypes.enum';
-import {
-  Recommendation,
-  RecommendationsResponse,
-} from '../types/Recommendations.type';
-import {Video, VideosResponse} from '../types/Video.type';
+import {Recommendation} from '../types/Recommendations.type';
+import {MovieDbResponse, SimpleResponse} from '../types/Response.type';
+import {Trending} from '../types/Trending.type';
+import {Video} from '../types/Video.type';
+import {SearchResult} from './../types/Search.type';
 
 const apiKey = '?api_key=8e7136c2b32f9f1008b865e9b0412842';
 const baseUrl = 'https://api.themoviedb.org/3';
@@ -20,7 +20,7 @@ export function getMediaList(
   id: string = 'popular',
 ): Promise<Media[]> {
   const url = `${baseUrl}/${mediaType}/${id}${apiKey}&language=en-US`;
-  return get<MediaResponse>(url).then(({results}) => {
+  return get<MovieDbResponse<Media>>(url).then(({results}) => {
     return results.map((media) => ({
       ...media,
       mediaType: mediaType || null,
@@ -43,7 +43,7 @@ export function getBaseDetails(item: Media) {
 
 export function getRating(item: Media): Promise<string> {
   const url = `${baseUrl}/${item.mediaType}/${item.id}/content_ratings${apiKey}&language=en-US`;
-  return get<ContentRatingResponse>(url).then((response) => {
+  return get<SimpleResponse<ContentRating>>(url).then((response) => {
     const value = response?.results
       .filter(({iso_3166_1}) => iso_3166_1 === 'US')
       .map(({rating}) => rating)
@@ -54,12 +54,28 @@ export function getRating(item: Media): Promise<string> {
 
 export function getRecommendations(item: Media): Promise<Recommendation[]> {
   const url = `${baseUrl}/${item.mediaType}/${item.id}/recommendations${apiKey}&language=en-US`;
-  return get<RecommendationsResponse>(url).then((response) => response.results);
+  return get<MovieDbResponse<Recommendation>>(url).then(
+    (response) => response.results,
+  );
+}
+
+export function getSearch(query: string): Promise<SearchResult[]> {
+  const url = `${baseUrl}/search/multi${apiKey}&language=en-US&query=${query}&page=1&include_adult=false`;
+  return get<MovieDbResponse<SearchResult>>(url).then(
+    (response) => response.results,
+  );
+}
+
+export function getTrending(): Promise<Trending[]> {
+  const url = `${baseUrl}/trending/all/day${apiKey}`;
+  return get<MovieDbResponse<Trending>>(url).then(
+    (response) => response.results,
+  );
 }
 
 export function getVideos(item: Media): Promise<Video[]> {
   const url = `${baseUrl}/${item.mediaType}/${item.id}/videos${apiKey}&language=en-US`;
-  return get<VideosResponse>(url).then((response) => response.results);
+  return get<SimpleResponse<Video>>(url).then((response) => response.results);
 }
 
 async function get<T>(url: string) {
