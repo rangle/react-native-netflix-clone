@@ -1,8 +1,3 @@
-export interface VideosResponse {
-  id: number;
-  results: Video[];
-}
-
 export interface Video {
   id: string;
   iso_639_1: string;

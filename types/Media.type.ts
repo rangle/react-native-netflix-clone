@@ -1,26 +1,19 @@
 import {MediaTypes} from '../types/MediaTypes.enum';
 
-export interface MediaResponse {
-  page: number;
-  results: Media[];
-  total_results: number;
-  total_pages: number;
-}
-
 export interface Media {
-  poster_path: string;
   adult: boolean;
-  overview: string;
-  release_date: string;
+  backdrop_path: string;
   genre_ids: number[];
   id: number;
-  original_title: string;
+  mediaType: MediaTypes;
   original_language: string;
-  title: string;
-  backdrop_path: string;
+  original_title: string;
+  overview: string;
   popularity: number;
-  vote_count: number;
+  poster_path: string;
+  release_date: string;
+  title: string;
   video: boolean;
   vote_average: number;
-  mediaType: MediaTypes;
+  vote_count: number;
 }
