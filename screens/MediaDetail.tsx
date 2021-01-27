@@ -2,14 +2,14 @@ import React, {useEffect} from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {Navigation, NavigationFunctionComponent} from 'react-native-navigation';
 import Button from '../components/Button';
-import Recommendations from '../components/Recommendations';
+import MediaResults from '../components/MediaResults';
 import VideoPlayer from '../components/VideoPlayer';
 import {black, charcoal} from '../styles/colors';
 import {globalStyle} from '../styles/global';
 import {typography} from '../styles/typography';
 import {Media} from '../types/Media.type';
 import {MediaDetail as MediaDetailType} from '../types/MediaDetail.type';
-import {getDetails} from '../util/api';
+import {getDetails, getRecommendations} from '../util/api';
 import {useAsync} from '../util/useAsync';
 
 interface Props {
@@ -57,7 +57,11 @@ const MediaDetail: NavigationFunctionComponent<Props> = (props) => {
               style={{...typography.display4, marginTop: 16, marginBottom: 8}}>
               More Like This
             </Text>
-            <Recommendations {...props} item={item} />
+            <MediaResults
+              {...props}
+              query={item}
+              callback={getRecommendations}
+            />
           </View>
         </ScrollView>
       </SafeAreaView>
