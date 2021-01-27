@@ -28,7 +28,7 @@ const MediaDetail: NavigationFunctionComponent<Props> = (props) => {
   }, [item, run]);
 
   return detail && !error ? (
-    <View style={styles.container}>
+    <View style={globalStyle.container}>
       <SafeAreaView style={{flex: 1}}>
         <View style={styles.videoContainer}>
           <VideoPlayer item={item} autoplay={true} />
@@ -59,8 +59,7 @@ const MediaDetail: NavigationFunctionComponent<Props> = (props) => {
             </Text>
             <MediaResults
               {...props}
-              query={item}
-              callback={getRecommendations}
+              callback={() => getRecommendations(item)}
             />
           </View>
         </ScrollView>
@@ -79,10 +78,6 @@ MediaDetail.options = {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: charcoal,
-    flex: 1,
-  },
   videoContainer: {
     height: '30%',
     minHeight: 200,
