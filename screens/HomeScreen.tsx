@@ -6,23 +6,22 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import {NavigationFunctionComponent} from 'react-native-navigation';
 import Billboard from '../components/Billboard';
 import MovieList from '../components/MovieList';
 import {charcoal} from '../styles/colors';
 import {globalStyle} from '../styles/global';
 import {homeLists} from '../util/constants';
 
-const HomeScreen: NavigationFunctionComponent<{}> = (props) => {
+const HomeScreen = () => {
   return (
     <View style={styles.homeContainer}>
       <StatusBar barStyle="light-content" />
       <SafeAreaView>
         <ScrollView>
-          <Billboard {...props} />
+          <Billboard />
           <View style={styles.movieListContainer}>
             {homeLists.map((list) => (
-              <MovieList key={list.title} {...props} data={list} />
+              <MovieList key={list.title} data={list} />
             ))}
           </View>
         </ScrollView>

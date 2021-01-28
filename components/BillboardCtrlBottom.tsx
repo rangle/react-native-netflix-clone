@@ -1,18 +1,15 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {StyleSheet, Text, TouchableHighlight, View} from 'react-native';
-import {Navigation, NavigationFunctionComponent} from 'react-native-navigation';
+import {Navigation} from 'react-native-navigation';
+import {NavigationContext} from 'react-native-navigation-hooks';
 import Button from '../components/Button';
 import {slateGray} from '../styles/colors';
 import {typography} from '../styles/typography';
-import {Media} from '../types/Media.type';
-interface Props {
-  item: Media;
-}
+import {ItemProp} from '../types/ItemProp.type';
 
-const BillboardCtrlBottom: NavigationFunctionComponent<Props> = ({
-  item,
-  componentId,
-}) => {
+const BillboardCtrlBottom = ({item}: ItemProp) => {
+  const {componentId = ''} = useContext(NavigationContext);
+
   return (
     <View style={styles.controlsContainer}>
       <TouchableHighlight

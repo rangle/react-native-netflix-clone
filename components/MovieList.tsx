@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {
   FlatList,
   Image,
@@ -7,7 +7,8 @@ import {
   TouchableHighlight,
   View,
 } from 'react-native';
-import {Navigation, NavigationFunctionComponent} from 'react-native-navigation';
+import {Navigation} from 'react-native-navigation';
+import {NavigationContext} from 'react-native-navigation-hooks';
 import {slateGray} from '../styles/colors';
 import {globalStyle} from '../styles/global';
 import {typography} from '../styles/typography';
@@ -21,12 +22,9 @@ interface Props {
   horizontal?: boolean;
 }
 
-const MovieList: NavigationFunctionComponent<Props> = ({
-  data,
-  horizontal = true,
-  componentId,
-}) => {
+const MovieList = ({data, horizontal = true}: Props) => {
   const {data: list, error, run} = useAsync<Media[]>(null);
+  const {componentId = ''} = useContext(NavigationContext);
 
   useEffect(() => {
     if (data) {

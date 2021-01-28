@@ -13,7 +13,7 @@ import {globalStyle} from '../styles/global';
 import {typography} from '../styles/typography';
 import {getSearch, getTrending} from '../util/api';
 
-const Search = (props) => {
+const Search = () => {
   const [searchText, setSearchText] = React.useState('');
   const callback = useCallback(() => {
     return searchText ? getSearch(searchText) : getTrending();
@@ -38,7 +38,7 @@ const Search = (props) => {
         <ScrollView>
           <View style={globalStyle.flex}>
             <Text style={styles.label}>{label}</Text>
-            <MediaResults {...props} callback={callback} />
+            <MediaResults callback={callback} />
           </View>
         </ScrollView>
       </SafeAreaView>

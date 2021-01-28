@@ -1,25 +1,21 @@
-import React, {useEffect} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
-import {Navigation, NavigationFunctionComponent} from 'react-native-navigation';
+import {Navigation} from 'react-native-navigation';
+import {NavigationContext} from 'react-native-navigation-hooks';
 import Button from '../components/Button';
 import MediaResults from '../components/MediaResults';
 import VideoPlayer from '../components/VideoPlayer';
 import {black, charcoal} from '../styles/colors';
 import {globalStyle} from '../styles/global';
 import {typography} from '../styles/typography';
-import {Media} from '../types/Media.type';
+import {ItemProp} from '../types/ItemProp.type';
 import {MediaDetail as MediaDetailType} from '../types/MediaDetail.type';
 import {getDetails, getRecommendations} from '../util/api';
 import {useAsync} from '../util/useAsync';
 
-interface Props {
-  item: Media;
-}
-
-const MediaDetail: NavigationFunctionComponent<Props> = (props) => {
+const MediaDetail = ({item}: ItemProp) => {
   const {data: detail, error, run} = useAsync<MediaDetailType>(null);
-
-  const {item, componentId} = props;
+  const {componentId = ''} = useContext(NavigationContext);
 
   useEffect(() => {
     if (item) {
@@ -54,10 +50,7 @@ const MediaDetail: NavigationFunctionComponent<Props> = (props) => {
           </View>
           <View style={globalStyle.flex}>
             <Text style={styles.label}>More Like This</Text>
-            <MediaResults
-              {...props}
-              callback={() => getRecommendations(item)}
-            />
+            <MediaResults callback={() => getRecommendations(item)} />
           </View>
         </ScrollView>
       </SafeAreaView>

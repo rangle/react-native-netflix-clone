@@ -5,13 +5,22 @@ import HomeScreen from './screens/HomeScreen';
 import MediaDetail from './screens/MediaDetail';
 import Search from './screens/Search';
 import {charcoal, slateGray, white} from './styles/colors';
+import {withNavigationProvider} from 'react-native-navigation-hooks';
 
 Orientation.lockToPortrait();
 
-Navigation.registerComponent('com.netflixClone.Home', () => HomeScreen);
-Navigation.registerComponent('com.netflixClone.Detail', () => MediaDetail);
-Navigation.registerComponent('com.netflixClone.Player', () => FullPlayer);
-Navigation.registerComponent('com.netflixClone.Search', () => Search);
+Navigation.registerComponent('com.netflixClone.Home', () =>
+  withNavigationProvider(HomeScreen),
+);
+Navigation.registerComponent('com.netflixClone.Detail', () =>
+  withNavigationProvider(MediaDetail),
+);
+Navigation.registerComponent('com.netflixClone.Player', () =>
+  withNavigationProvider(FullPlayer),
+);
+Navigation.registerComponent('com.netflixClone.Search', () =>
+  withNavigationProvider(Search),
+);
 
 Navigation.setDefaultOptions({
   topBar: {

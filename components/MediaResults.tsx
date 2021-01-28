@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {NavigationFunctionComponent} from 'react-native-navigation';
 import {typography} from '../styles/typography';
 import {Await} from '../types/util';
 import {getRecommendations, getSearch, getTrending} from '../util/api';
@@ -16,8 +15,7 @@ interface Props {
   callback: () => callbackType;
 }
 
-const MediaResults: NavigationFunctionComponent<Props> = (props) => {
-  const {callback} = props;
+const MediaResults = ({callback}: Props) => {
   type callbackReturnType = Await<ReturnType<typeof callback>>;
 
   const {data, error, run} = useAsync<callbackReturnType>([]);
@@ -39,7 +37,7 @@ const MediaResults: NavigationFunctionComponent<Props> = (props) => {
           {data
             .filter((el) => el.poster_path != null)
             .map((el) => (
-              <MediaCard {...props} key={el.id} item={el} />
+              <MediaCard key={el.id} item={el} />
             ))}
         </View>
       )}

@@ -1,16 +1,11 @@
 import {useDimensions} from '@react-native-community/hooks';
 import React, {useEffect} from 'react';
 import {View} from 'react-native';
-import {NavigationFunctionComponent} from 'react-native-navigation';
 import Orientation from 'react-native-orientation-locker';
 import VideoPlayer from '../components/VideoPlayer';
-import {Media} from '../types/Media.type';
+import {ItemProp} from '../types/ItemProp.type';
 
-interface Props {
-  item: Media;
-}
-
-const FullPlayer: NavigationFunctionComponent<Props> = ({item}) => {
+const FullPlayer = ({item}: ItemProp) => {
   const {width, height} = useDimensions().screen;
 
   useEffect(() => {
