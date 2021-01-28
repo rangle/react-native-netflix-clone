@@ -36,7 +36,7 @@ const Search = (props) => {
           />
         </View>
         <ScrollView>
-          <View style={styles.resultsContainer}>
+          <View style={globalStyle.flex}>
             <Text style={styles.label}>{label}</Text>
             <MediaResults {...props} callback={callback} />
           </View>
@@ -67,9 +67,6 @@ const styles = StyleSheet.create({
     marginLeft: 4,
     borderRadius: 4,
     padding: 4,
-  },
-  resultsContainer: {
-    flex: 1,
   },
   textInput: {
     color: charcoal,

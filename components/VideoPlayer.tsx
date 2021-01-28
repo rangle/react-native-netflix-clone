@@ -88,7 +88,7 @@ const VideoPlayer = ({
   ) : error ? (
     <Text>Error: {error.message}</Text>
   ) : (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+    <View style={styles.ActivityIndicatorContainer}>
       <ActivityIndicator size={isFullscreen ? 'large' : 'small'} color={red} />
     </View>
   );
@@ -98,6 +98,11 @@ const styles = StyleSheet.create({
   player: {
     alignSelf: 'stretch',
     height: '100%',
+  },
+  ActivityIndicatorContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

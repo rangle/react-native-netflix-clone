@@ -34,9 +34,7 @@ const Billboard = (props) => {
             allowFontScaling>
             {item?.title}
           </Text>
-          <Text style={{...typography.display4, textAlign: 'center'}}>
-            #{i + 1} in Canada Today
-          </Text>
+          <Text style={styles.subtitle}>#{i + 1} in Canada Today</Text>
           <BillboardCtrlBottom {...props} item={item} />
         </ImageBackground>
       )}
@@ -50,6 +48,10 @@ const styles = StyleSheet.create({
   },
   backgroundImage: {
     minHeight: 300,
+  },
+  subtitle: {
+    ...typography.display4,
+    textAlign: 'center',
   },
 });
 

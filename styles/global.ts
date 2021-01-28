@@ -15,4 +15,7 @@ export const globalStyle = StyleSheet.create({
     height: 180,
     borderRadius: 5,
   },
+  flex: {
+    flex: 1,
+  },
 });

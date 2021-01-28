@@ -20,7 +20,7 @@ const HomeScreen: NavigationFunctionComponent<{}> = (props) => {
       <SafeAreaView>
         <ScrollView>
           <Billboard {...props} />
-          <View style={{...globalStyle.container, flex: 3}}>
+          <View style={styles.movieListContainer}>
             {homeLists.map((list) => (
               <MovieList key={list.title} {...props} data={list} />
             ))}
@@ -42,6 +42,10 @@ const styles = StyleSheet.create({
     backgroundColor: charcoal,
     flex: 1,
     height: '100%',
+  },
+  movieListContainer: {
+    ...globalStyle.container,
+    flex: 3,
   },
 });
 

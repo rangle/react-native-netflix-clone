@@ -28,15 +28,15 @@ const MediaDetail: NavigationFunctionComponent<Props> = (props) => {
   }, [item, run]);
 
   return detail && !error ? (
-    <View style={styles.container}>
-      <SafeAreaView style={{flex: 1}}>
+    <View style={styles.detailContainer}>
+      <SafeAreaView style={globalStyle.flex}>
         <View style={styles.videoContainer}>
           <VideoPlayer item={item} autoplay={true} />
         </View>
         <ScrollView contentContainerStyle={globalStyle.container}>
           <Text style={typography.display2}>{detail.name || detail.title}</Text>
           <Text style={typography.display6}>{detail.tagline}</Text>
-          <View style={{marginTop: 16, marginBottom: 16}}>
+          <View style={styles.playBtnContainer}>
             <Button
               title="▶ Play"
               onPress={() =>
@@ -52,11 +52,8 @@ const MediaDetail: NavigationFunctionComponent<Props> = (props) => {
           <View style={{}}>
             <Text style={typography.display6}>{detail.overview}</Text>
           </View>
-          <View style={{flex: 1}}>
-            <Text
-              style={{...typography.display4, marginTop: 16, marginBottom: 8}}>
-              More Like This
-            </Text>
+          <View style={globalStyle.flex}>
+            <Text style={styles.label}>More Like This</Text>
             <MediaResults
               {...props}
               callback={() => getRecommendations(item)}
@@ -78,7 +75,7 @@ MediaDetail.options = {
 };
 
 const styles = StyleSheet.create({
-  container: {
+  detailContainer: {
     backgroundColor: charcoal,
     flex: 1,
   },
@@ -86,6 +83,15 @@ const styles = StyleSheet.create({
     height: '30%',
     minHeight: 200,
     backgroundColor: black,
+  },
+  playBtnContainer: {
+    marginTop: 16,
+    marginBottom: 16,
+  },
+  label: {
+    ...typography.display4,
+    marginTop: 16,
+    marginBottom: 8,
   },
 });
 
