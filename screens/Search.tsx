@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 import MediaResults from '../components/MediaResults';
-import {charcoal, offWhite, slateGray} from '../styles/colors';
+import {charcoal, mediumGray, slateGray} from '../styles/colors';
 import {globalStyle} from '../styles/global';
 import {typography} from '../styles/typography';
 import {getSearch, getTrending} from '../util/api';
@@ -22,23 +22,22 @@ const Search = (props) => {
   const label = searchText ? 'Movies & TV Shows' : 'Top Searches';
 
   return (
-    <View
-      style={{...globalStyle.container, backgroundColor: charcoal, flex: 1}}>
+    <View style={styles.searchContainer}>
       <SafeAreaView>
         <View style={styles.searchInput}>
           <TextInput
             placeholder="Search"
-            placeholderTextColor={offWhite}
+            placeholderTextColor={slateGray}
             value={searchText}
             onChangeText={(text) => setSearchText(text)}
+            clearButtonMode="while-editing"
+            selectionColor={slateGray}
+            style={styles.textInput}
           />
         </View>
         <ScrollView>
-          <View style={{flex: 1}}>
-            <Text
-              style={{...typography.display4, marginTop: 16, marginBottom: 8}}>
-              {label}
-            </Text>
+          <View style={styles.resultsContainer}>
+            <Text style={styles.label}>{label}</Text>
             <MediaResults {...props} callback={callback} />
           </View>
         </ScrollView>
@@ -54,8 +53,13 @@ Search.options = {
 };
 
 const styles = StyleSheet.create({
+  searchContainer: {
+    ...globalStyle.container,
+    backgroundColor: charcoal,
+    flex: 1,
+  },
   searchInput: {
-    backgroundColor: slateGray,
+    backgroundColor: mediumGray,
     lineHeight: 24,
     marginTop: 8,
     marginBottom: 16,
@@ -63,6 +67,17 @@ const styles = StyleSheet.create({
     marginLeft: 4,
     borderRadius: 4,
     padding: 4,
+  },
+  resultsContainer: {
+    flex: 1,
+  },
+  textInput: {
+    color: charcoal,
+  },
+  label: {
+    ...typography.display4,
+    marginTop: 16,
+    marginBottom: 8,
   },
 });
 

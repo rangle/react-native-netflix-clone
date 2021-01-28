@@ -66,8 +66,8 @@ export function getSearch(query: string): Promise<SearchResult[]> {
   );
 }
 
-export function getTrending(): Promise<Trending[]> {
-  const url = `${baseUrl}/trending/all/day${apiKey}`;
+export function getTrending(page: number = 1): Promise<Trending[]> {
+  const url = `${baseUrl}/trending/all/day${apiKey}&page=${page}`;
   return get<MovieDbResponse<Trending>>(url).then(
     (response) => response.results,
   );
