@@ -28,7 +28,7 @@ const MediaDetail: NavigationFunctionComponent<Props> = (props) => {
   }, [item, run]);
 
   return detail && !error ? (
-    <View style={globalStyle.container}>
+    <View style={styles.container}>
       <SafeAreaView style={{flex: 1}}>
         <View style={styles.videoContainer}>
           <VideoPlayer item={item} autoplay={true} />
@@ -78,6 +78,10 @@ MediaDetail.options = {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: charcoal,
+    flex: 1,
+  },
   videoContainer: {
     height: '30%',
     minHeight: 200,

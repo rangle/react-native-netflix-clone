@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 import MediaResults from '../components/MediaResults';
-import {offWhite, slateGray} from '../styles/colors';
+import {charcoal, offWhite, slateGray} from '../styles/colors';
 import {globalStyle} from '../styles/global';
 import {typography} from '../styles/typography';
 import {getSearch, getTrending} from '../util/api';
@@ -22,7 +22,8 @@ const Search = (props) => {
   const label = searchText ? 'Movies & TV Shows' : 'Top Searches';
 
   return (
-    <View style={globalStyle.container}>
+    <View
+      style={{...globalStyle.container, backgroundColor: charcoal, flex: 1}}>
       <SafeAreaView>
         <View style={styles.searchInput}>
           <TextInput

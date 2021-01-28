@@ -36,9 +36,11 @@ const MediaResults: NavigationFunctionComponent<Props> = (props) => {
         </Text>
       ) : (
         <View style={{...styles.listContainer, justifyContent: 'space-evenly'}}>
-          {data.map((el) => (
-            <MediaCard {...props} key={el.id} item={el} />
-          ))}
+          {data
+            .filter((el) => el.poster_path != null)
+            .map((el) => (
+              <MediaCard {...props} key={el.id} item={el} />
+            ))}
         </View>
       )}
     </View>
