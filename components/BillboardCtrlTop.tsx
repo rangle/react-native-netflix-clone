@@ -6,13 +6,19 @@ const BillboardCtrlTop = () => {
   return (
     <View style={styles.container}>
       <View style={styles.rowTop1}>
-        <Image
-          style={styles.logo}
-          source={require('../image/Netflix_logo.png')}
-        />
+        <View>
+          <Image
+            style={styles.logo}
+            source={require('../image/Netflix_logo.png')}
+          />
+        </View>
         <View style={styles.rowTop2}>
-          <Button title="📺" link onPress={() => console.log('📺 clicked')} />
-          <Button title="🐨" link onPress={() => console.log('🐨 clicked')} />
+          <View style={styles.button}>
+            <Button title="📺" link onPress={() => console.log('📺 clicked')} />
+          </View>
+          <View style={styles.button}>
+            <Button title="🐨" link onPress={() => console.log('🐨 clicked')} />
+          </View>
         </View>
       </View>
       <View style={styles.rowBottom}>
@@ -41,13 +47,18 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   rowTop1: {
-    flex: 0,
+    flex: 1,
     flexDirection: 'row',
+    justifyContent: 'space-between',
+    height: 20,
   },
   rowTop2: {
     flex: 1,
-    justifyContent: 'flex-end',
     flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
+  button: {
+    width: 75,
   },
   logo: {
     margin: 10,
@@ -55,7 +66,7 @@ const styles = StyleSheet.create({
     width: 30,
   },
   rowBottom: {
-    flex: 0,
+    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
