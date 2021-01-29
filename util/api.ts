@@ -54,31 +54,44 @@ export function getRating(item: Media): Promise<string> {
 
 export function getRecommendations(item: Media): Promise<Recommendation[]> {
   const url = `${baseUrl}/${item.mediaType}/${item.id}/recommendations${apiKey}&language=en-US`;
-  return get<MovieDbResponse<Recommendation>>(url).then(
-    (response) => response.results,
-  );
+  return get<MovieDbResponse<Recommendation>>(url)
+    .then(getResults)
+    .then((results) =>
+      results.map((result) => ({...result, mediaType: item.mediaType})),
+    );
 }
 
 export function getSearch(query: string): Promise<SearchResult[]> {
   const url = `${baseUrl}/search/multi${apiKey}&language=en-US&query=${query}&page=1&include_adult=false`;
-  return get<MovieDbResponse<SearchResult>>(url).then(
-    (response) => response.results,
-  );
+  return get<MovieDbResponse<SearchResult>>(url)
+    .then(getResults)
+    .then(appendMediaType);
 }
 
 export function getTrending(page: number = 1): Promise<Trending[]> {
   const url = `${baseUrl}/trending/all/day${apiKey}&page=${page}`;
-  return get<MovieDbResponse<Trending>>(url).then(
-    (response) => response.results,
-  );
+  return get<MovieDbResponse<Trending>>(url)
+    .then(getResults)
+    .then(appendMediaType);
 }
 
 export function getVideos(item: Media): Promise<Video[]> {
   const url = `${baseUrl}/${item.mediaType}/${item.id}/videos${apiKey}&language=en-US`;
-  return get<SimpleResponse<Video>>(url).then((response) => response.results);
+  return get<SimpleResponse<Video>>(url).then(getResults);
 }
 
-async function get<T>(url: string) {
+async function get<T>(url: string): Promise<T> {
   const {data} = await axios.get<T>(url);
   return data;
+}
+
+function getResults(response) {
+  return response.results;
+}
+
+function appendMediaType(results: any[]): any[] {
+  return results.map((result) => ({
+    ...result,
+    mediaType: result.media_type === 'movie' ? MediaTypes.MOVIE : MediaTypes.TV,
+  }));
 }

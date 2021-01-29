@@ -13,18 +13,17 @@ interface Props {
 const MediaCard = ({item}: Props) => {
   const {componentId = ''} = useContext(NavigationContext);
 
-  const onPress = (item) => {
+  const onPress = () => {
     Navigation.push<Props>(componentId, {
       component: {
         name: 'com.netflixClone.Detail',
-        id: componentId,
         passProps: {item},
       },
     });
   };
 
   return (
-    <TouchableHighlight underlayColor={slateGray} onPress={() => onPress(item)}>
+    <TouchableHighlight underlayColor={slateGray} onPress={onPress}>
       <View style={globalStyle.posterContainer}>
         <Image
           source={{
