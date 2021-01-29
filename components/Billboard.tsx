@@ -7,7 +7,7 @@ import {useAsync} from '../util/useAsync';
 import BillboardCtrlBottom from './BillboardCtrlBottom';
 import BillboardCtrlTop from './BillboardCtrlTop';
 
-const Billboard = (props) => {
+const Billboard = () => {
   const {data: list, error, run} = useAsync<Media[]>([]);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const Billboard = (props) => {
             {item?.title}
           </Text>
           <Text style={styles.subtitle}>#{i + 1} in Canada Today</Text>
-          <BillboardCtrlBottom {...props} item={item} />
+          <BillboardCtrlBottom item={item} />
         </ImageBackground>
       )}
     </View>

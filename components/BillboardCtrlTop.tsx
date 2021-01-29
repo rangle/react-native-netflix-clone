@@ -1,13 +1,15 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, View} from 'react-native';
 import Button from '../components/Button';
-import {typography} from '../styles/typography';
 
 const BillboardCtrlTop = () => {
   return (
     <View style={styles.container}>
       <View style={styles.rowTop1}>
-        <Text style={typography.display4}>LOGO</Text>
+        <Image
+          style={styles.logo}
+          source={require('../image/Netflix_logo.png')}
+        />
         <View style={styles.rowTop2}>
           <Button title="📺" link onPress={() => console.log('📺 clicked')} />
           <Button title="🐨" link onPress={() => console.log('🐨 clicked')} />
@@ -46,6 +48,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     flexDirection: 'row',
+  },
+  logo: {
+    margin: 10,
+    height: 30,
+    width: 30,
   },
   rowBottom: {
     flex: 0,
