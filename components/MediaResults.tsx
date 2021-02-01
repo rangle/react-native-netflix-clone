@@ -1,31 +1,19 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {typography} from '../styles/typography';
-import {Await} from '../types/util';
-import {getRecommendations, getSearch, getTrending} from '../util/api';
-import {useAsync} from '../util/useAsync';
+import {Recommendation} from '../types/Recommendations.type';
+import {SearchResult} from '../types/Search.type';
+import {Trending} from '../types/Trending.type';
 import MediaCard from './MediaCard';
 
-type callbackType =
-  | ReturnType<typeof getRecommendations>
-  | ReturnType<typeof getSearch>
-  | ReturnType<typeof getTrending>;
+type dataType = (Recommendation | SearchResult | Trending)[];
 
 interface Props {
-  callback: () => callbackType;
+  data: dataType;
+  error: any;
 }
 
-const MediaResults = ({callback}: Props) => {
-  type callbackReturnType = Await<ReturnType<typeof callback>>;
-
-  const {data, error, run} = useAsync<callbackReturnType>([]);
-
-  useEffect(() => {
-    if (callback) {
-      run(callback());
-    }
-  }, [callback, run]);
-
+const MediaResults = ({data, error}: Props) => {
   return error ? (
     <Text style={typography.display5}>
       Oops, there was a problem loading ...

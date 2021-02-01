@@ -10,18 +10,25 @@ import {globalStyle} from '../styles/global';
 import {typography} from '../styles/typography';
 import {ItemProp} from '../types/ItemProp.type';
 import {MediaDetail as MediaDetailType} from '../types/MediaDetail.type';
+import {Recommendation} from '../types/Recommendations.type';
 import {getDetails, getRecommendations} from '../util/api';
 import {useAsync} from '../util/useAsync';
 
 const MediaDetail = ({item}: ItemProp) => {
-  const {data: detail, error, run} = useAsync<MediaDetailType>(null);
   const {componentId = ''} = useContext(NavigationContext);
+  const {data: detail, error, run} = useAsync<MediaDetailType>(null);
+  const {
+    data: recommendations,
+    error: recommendationsError,
+    run: recommendationsRun,
+  } = useAsync<Recommendation[]>([]);
 
   useEffect(() => {
     if (item) {
       run(getDetails(item));
+      recommendationsRun(getRecommendations(item));
     }
-  }, [item, run]);
+  }, [item, run, recommendationsRun]);
 
   return detail && !error ? (
     <View style={styles.detailContainer}>
@@ -50,7 +57,7 @@ const MediaDetail = ({item}: ItemProp) => {
           </View>
           <View style={globalStyle.flex}>
             <Text style={styles.label}>More Like This</Text>
-            <MediaResults callback={() => getRecommendations(item)} />
+            <MediaResults data={recommendations} error={recommendationsError} />
           </View>
         </ScrollView>
       </SafeAreaView>

@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useEffect} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -11,13 +11,22 @@ import MediaResults from '../components/MediaResults';
 import {charcoal, mediumGray, slateGray} from '../styles/colors';
 import {globalStyle} from '../styles/global';
 import {typography} from '../styles/typography';
+import {SearchResult} from '../types/Search.type';
+import {Trending} from '../types/Trending.type';
 import {getSearch, getTrending} from '../util/api';
+import {useAsync} from '../util/useAsync';
 
 const Search = () => {
   const [searchText, setSearchText] = React.useState('');
-  const callback = useCallback(() => {
-    return searchText ? getSearch(searchText) : getTrending();
-  }, [searchText]);
+  const {data, error, run} = useAsync<SearchResult[] | Trending[]>([]);
+
+  useEffect(() => {
+    if (searchText) {
+      run(getSearch(searchText));
+    } else {
+      run(getTrending());
+    }
+  }, [searchText, run]);
 
   const label = searchText ? 'Movies & TV Shows' : 'Top Searches';
 
@@ -38,7 +47,7 @@ const Search = () => {
         <ScrollView>
           <View style={globalStyle.flex}>
             <Text style={styles.label}>{label}</Text>
-            <MediaResults callback={callback} />
+            <MediaResults data={data} error={error} />
           </View>
         </ScrollView>
       </SafeAreaView>
