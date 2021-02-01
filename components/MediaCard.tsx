@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {Image, TouchableHighlight, View} from 'react-native';
+import {Image, TouchableHighlight} from 'react-native';
 import {Navigation} from 'react-native-navigation';
 import {NavigationContext} from 'react-native-navigation-hooks';
 import {slateGray} from '../styles/colors';
@@ -23,15 +23,16 @@ const MediaCard = ({item}: Props) => {
   };
 
   return (
-    <TouchableHighlight underlayColor={slateGray} onPress={onPress}>
-      <View style={globalStyle.posterContainer}>
-        <Image
-          source={{
-            uri: getImageUrl(item.poster_path),
-          }}
-          style={globalStyle.poster}
-        />
-      </View>
+    <TouchableHighlight
+      underlayColor={slateGray}
+      onPress={onPress}
+      style={globalStyle.posterContainer}>
+      <Image
+        source={{
+          uri: getImageUrl(item.poster_path),
+        }}
+        style={globalStyle.poster}
+      />
     </TouchableHighlight>
   );
 };

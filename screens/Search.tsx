@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     color: charcoal,
+    height: 30,
   },
   label: {
     ...typography.display4,

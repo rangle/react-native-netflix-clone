@@ -26,21 +26,17 @@ const MediaResults = ({callback}: Props) => {
     }
   }, [callback, run]);
 
-  return (
+  return error ? (
+    <Text style={typography.display5}>
+      Oops, there was a problem loading ...
+    </Text>
+  ) : (
     <View style={styles.listContainer}>
-      {error ? (
-        <Text style={typography.display5}>
-          Oops, there was a problem loading ...
-        </Text>
-      ) : (
-        <View style={{...styles.listContainer, justifyContent: 'space-evenly'}}>
-          {data
-            .filter((el) => el.poster_path != null)
-            .map((el) => (
-              <MediaCard key={el.id} item={el} />
-            ))}
-        </View>
-      )}
+      {data
+        .filter((el) => el.poster_path != null)
+        .map((el) => (
+          <MediaCard key={el.id} item={el} />
+        ))}
     </View>
   );
 };
@@ -50,7 +46,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
   },
 });
 

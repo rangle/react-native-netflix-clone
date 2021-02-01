@@ -42,7 +42,7 @@ const MovieList = ({data, horizontal = true}: Props) => {
           source={{
             uri: getImageUrl(item.poster_path),
           }}
-          style={globalStyle.poster}
+          style={{...globalStyle.poster, width: 120, height: 180}}
         />
       </View>
     </TouchableHighlight>
