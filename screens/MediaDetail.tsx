@@ -52,7 +52,7 @@ const MediaDetail = ({item}: ItemProp) => {
               }
             />
           </View>
-          <View style={{}}>
+          <View>
             <Text style={typography.display6}>{detail.overview}</Text>
           </View>
           <View style={globalStyle.flex}>

@@ -16,7 +16,7 @@ const BillboardCtrlBottom = ({item}: ItemProp) => {
         underlayColor={slateGray}
         onPress={() => console.log('TODO => Implement add to my list feature')}>
         <View style={styles.controlContainer}>
-          <Text style={{...typography.display3, fontSize: 26}}>+</Text>
+          <Text style={[typography.display3, styles.iconBig]}>+</Text>
           <Text style={typography.display6}>My List</Text>
         </View>
       </TouchableHighlight>
@@ -42,7 +42,7 @@ const BillboardCtrlBottom = ({item}: ItemProp) => {
           })
         }>
         <View style={styles.controlContainer}>
-          <Text style={{...typography.display3, fontSize: 26}}>ℹ</Text>
+          <Text style={[typography.display3, styles.iconBig]}>ℹ</Text>
           <Text style={typography.display6}>Info</Text>
         </View>
       </TouchableHighlight>
@@ -60,6 +60,9 @@ const styles = StyleSheet.create({
   },
   controlContainer: {
     alignItems: 'center',
+  },
+  iconBig: {
+    fontSize: 26,
   },
 });
 
