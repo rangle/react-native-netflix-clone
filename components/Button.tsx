@@ -7,16 +7,23 @@ import {
   TouchableHighlight,
   View,
 } from 'react-native';
-import {slateGray} from '../styles/colors';
+import {mediumGray, slateGray} from '../styles/colors';
 
 interface Props {
   title: string;
   onPress: (event: GestureResponderEvent) => void;
   link?: boolean;
   disabled?: boolean;
+  active?: boolean;
 }
 
-const Button = ({title, onPress, link = false, disabled = false}: Props) => {
+const Button = ({
+  title,
+  onPress,
+  link = false,
+  disabled = false,
+  active = false,
+}: Props) => {
   const formattedTitle =
     Platform.OS === 'android' ? title.toUpperCase() : title;
 
@@ -30,7 +37,9 @@ const Button = ({title, onPress, link = false, disabled = false}: Props) => {
       onPress={onPress}
       underlayColor={link ? 'transparent' : slateGray}>
       <View style={buttonStyles}>
-        <Text style={textStyles}>{formattedTitle}</Text>
+        <Text style={[textStyles, active ? styles.active : {}]}>
+          {formattedTitle}
+        </Text>
       </View>
     </TouchableHighlight>
   );
@@ -54,6 +63,9 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     textAlign: 'center',
     margin: 8,
+  },
+  active: {
+    color: mediumGray,
   },
 });
 

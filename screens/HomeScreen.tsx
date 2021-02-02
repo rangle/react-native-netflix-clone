@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import Billboard from '../components/Billboard';
 import MovieList from '../components/MovieList';
+import {MediaTypeSelectionProvider} from '../context/MediaTypeSelectionContext';
 import {charcoal} from '../styles/colors';
 import {globalStyle} from '../styles/global';
 import {homeLists} from '../util/constants';
@@ -18,12 +19,14 @@ const HomeScreen = () => {
       <StatusBar barStyle="light-content" />
       <SafeAreaView>
         <ScrollView>
-          <Billboard />
-          <View style={styles.movieListContainer}>
-            {homeLists.map((list) => (
-              <MovieList key={list.title} data={list} />
-            ))}
-          </View>
+          <MediaTypeSelectionProvider>
+            <Billboard />
+            <View style={styles.movieListContainer}>
+              {homeLists.map((list) => (
+                <MovieList key={list.title} data={list} />
+              ))}
+            </View>
+          </MediaTypeSelectionProvider>
         </ScrollView>
       </SafeAreaView>
     </View>

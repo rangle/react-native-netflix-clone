@@ -1,8 +1,20 @@
 import React from 'react';
 import {Image, StyleSheet, View} from 'react-native';
 import Button from '../components/Button';
+import {useMediaTypeSelection} from '../context/MediaTypeSelectionContext';
+import {MediaType, MediaTypes} from '../types/MediaTypes.enum';
 
 const BillboardCtrlTop = () => {
+  const [mediaTypeSelection, setMediaTypeSelection] = useMediaTypeSelection();
+
+  const handleMediaTypeSelection = (selection: MediaType) => {
+    if (selection === mediaTypeSelection) {
+      setMediaTypeSelection(MediaTypes.ALL);
+    } else {
+      setMediaTypeSelection(selection);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.rowTop1}>
@@ -25,12 +37,14 @@ const BillboardCtrlTop = () => {
         <Button
           title="TV Shows"
           link
-          onPress={() => console.log('TV Shows clicked')}
+          onPress={() => handleMediaTypeSelection(MediaTypes.TV)}
+          active={mediaTypeSelection === MediaTypes.TV}
         />
         <Button
           title="Movies"
           link
-          onPress={() => console.log('Movies clicked')}
+          onPress={() => handleMediaTypeSelection(MediaTypes.MOVIE)}
+          active={mediaTypeSelection === MediaTypes.MOVIE}
         />
         <Button
           title="Categories"
