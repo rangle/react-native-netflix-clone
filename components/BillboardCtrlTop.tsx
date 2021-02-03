@@ -1,13 +1,31 @@
 import React from 'react';
-import {Image, StyleSheet, View} from 'react-native';
+import {
+  Image,
+  LayoutAnimation,
+  Platform,
+  StyleSheet,
+  UIManager,
+  View,
+} from 'react-native';
 import Button from '../components/Button';
 import {useMediaTypeSelection} from '../context/MediaTypeSelectionContext';
 import {MediaType, MediaTypes} from '../types/MediaTypes.enum';
 
+if (Platform.OS === 'android') {
+  if (UIManager.setLayoutAnimationEnabledExperimental) {
+    UIManager.setLayoutAnimationEnabledExperimental(true);
+  }
+}
+
 const BillboardCtrlTop = () => {
   const [mediaTypeSelection, setMediaTypeSelection] = useMediaTypeSelection();
 
+  const isMediaVisible = (mediaType: MediaType): boolean =>
+    mediaTypeSelection === mediaType || mediaTypeSelection === MediaTypes.ALL;
+
   const handleMediaTypeSelection = (selection: MediaType) => {
+    LayoutAnimation.easeInEaseOut();
+
     if (selection === mediaTypeSelection) {
       setMediaTypeSelection(MediaTypes.ALL);
     } else {
@@ -33,24 +51,28 @@ const BillboardCtrlTop = () => {
           </View>
         </View>
       </View>
-      <View style={styles.rowBottom}>
-        <Button
-          title="TV Shows"
-          link
-          onPress={() => handleMediaTypeSelection(MediaTypes.TV)}
-          active={mediaTypeSelection === MediaTypes.TV}
-        />
-        <Button
-          title="Movies"
-          link
-          onPress={() => handleMediaTypeSelection(MediaTypes.MOVIE)}
-          active={mediaTypeSelection === MediaTypes.MOVIE}
-        />
-        <Button
-          title="Categories"
-          link
-          onPress={() => console.log('Categories clicked')}
-        />
+      <View
+        style={{
+          flex: 1,
+          flexDirection: 'row',
+          justifyContent: isMediaVisible(MediaTypes.ALL)
+            ? 'space-around'
+            : 'flex-start',
+        }}>
+        {isMediaVisible(MediaTypes.TV) ? (
+          <Button
+            title="TV Shows"
+            link
+            onPress={() => handleMediaTypeSelection(MediaTypes.TV)}
+          />
+        ) : null}
+        {isMediaVisible(MediaTypes.MOVIE) ? (
+          <Button
+            title="Movies"
+            link
+            onPress={() => handleMediaTypeSelection(MediaTypes.MOVIE)}
+          />
+        ) : null}
       </View>
     </View>
   );
@@ -78,11 +100,6 @@ const styles = StyleSheet.create({
     margin: 10,
     height: 30,
     width: 30,
-  },
-  rowBottom: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
   },
 });
 
