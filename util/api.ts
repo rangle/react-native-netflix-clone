@@ -10,7 +10,7 @@ import {Trending} from '../types/Trending.type';
 import {Video} from '../types/Video.type';
 import {SearchResult} from './../types/Search.type';
 
-const baseUrl = Config.API_URL;
+const baseUrl = 'https://api.themoviedb.org/3';
 const apiKey = `?api_key=${Config.MOVIES_DB_API_KEY}`;
 
 export const getImageUrl = (pathSuffix, width: number = 200) =>
