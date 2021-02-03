@@ -24,7 +24,16 @@ const BillboardCtrlTop = () => {
     mediaTypeSelection === mediaType || mediaTypeSelection === MediaTypes.ALL;
 
   const handleMediaTypeSelection = (selection: MediaType) => {
-    LayoutAnimation.easeInEaseOut();
+    LayoutAnimation.configureNext({
+      duration: 300,
+      create: {
+        type: LayoutAnimation.Types.easeInEaseOut,
+        property: LayoutAnimation.Properties.opacity,
+      },
+      update: {
+        type: LayoutAnimation.Types.easeInEaseOut,
+      },
+    });
 
     if (selection === mediaTypeSelection) {
       setMediaTypeSelection(MediaTypes.ALL);
