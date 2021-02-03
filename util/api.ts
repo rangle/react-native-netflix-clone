@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Config from 'react-native-config';
 import {ContentRating} from '../types/ContentRating.type';
 import {Media} from '../types/Media.type';
 import {MediaDetail} from '../types/MediaDetail.type';
@@ -9,8 +10,8 @@ import {Trending} from '../types/Trending.type';
 import {Video} from '../types/Video.type';
 import {SearchResult} from './../types/Search.type';
 
-const apiKey = '?api_key=8e7136c2b32f9f1008b865e9b0412842';
-const baseUrl = 'https://api.themoviedb.org/3';
+const baseUrl = Config.API_URL;
+const apiKey = `?api_key=${Config.MOVIES_DB_API_KEY}`;
 
 export const getImageUrl = (pathSuffix, width: number = 200) =>
   `https://image.tmdb.org/t/p/w${width}/${pathSuffix}`;
