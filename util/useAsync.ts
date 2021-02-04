@@ -11,7 +11,12 @@ export function useAsync<T>(
 
   const run = useCallback(
     (promise: Promise<T>) => {
-      promise.then(safeSetData).catch(safeSetError);
+      promise
+        .then((result) => {
+          safeSetData(result);
+          safeSetError(null);
+        })
+        .catch(safeSetError);
     },
     [safeSetData, safeSetError],
   );
