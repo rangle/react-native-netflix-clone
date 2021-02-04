@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@react-native-community/hooks": "^2.6.0",
+    "@react-native-community/netinfo": "^5.9.10",
     "axios": "^0.21.1",
     "react": "16.13.1",
     "react-native": "0.63.4",
