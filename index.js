@@ -1,11 +1,12 @@
 import {Navigation} from 'react-native-navigation';
+import {withNavigationProvider} from 'react-native-navigation-hooks';
 import Orientation from 'react-native-orientation-locker';
+import Toast from './components/Toast';
 import FullPlayer from './screens/FullPlayer';
 import HomeScreen from './screens/HomeScreen';
 import MediaDetail from './screens/MediaDetail';
 import Search from './screens/Search';
-import {charcoal, slateGray, white} from './styles/colors';
-import {withNavigationProvider} from 'react-native-navigation-hooks';
+import Colors from './styles/colors';
 
 Orientation.lockToPortrait();
 
@@ -21,6 +22,9 @@ Navigation.registerComponent('com.netflixClone.Player', () =>
 Navigation.registerComponent('com.netflixClone.Search', () =>
   withNavigationProvider(Search),
 );
+Navigation.registerComponent('com.netflixClone.offlineToast', () =>
+  withNavigationProvider(Toast),
+);
 
 Navigation.setDefaultOptions({
   topBar: {
@@ -29,11 +33,11 @@ Navigation.setDefaultOptions({
   bottomTabs: {
     barStyle: 'black',
     visible: true,
-    backgroundColor: charcoal,
+    backgroundColor: Colors.charcoal,
   },
   bottomTab: {
-    selectedTextColor: white,
-    textColor: slateGray,
+    selectedTextColor: Colors.white,
+    textColor: Colors.slateGray,
     fontSize: 14,
     selectedFontSize: 14,
   },

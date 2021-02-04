@@ -5,7 +5,7 @@ import {NavigationContext} from 'react-native-navigation-hooks';
 import Button from '../components/Button';
 import MediaResults from '../components/MediaResults';
 import VideoPlayer from '../components/VideoPlayer';
-import {black, charcoal} from '../styles/colors';
+import Colors from '../styles/colors';
 import {globalStyle} from '../styles/global';
 import {typography} from '../styles/typography';
 import {ItemProp} from '../types/ItemProp.type';
@@ -69,20 +69,20 @@ MediaDetail.options = {
   topBar: {
     visible: true,
     background: {
-      color: charcoal,
+      color: Colors.charcoal,
     },
   },
 };
 
 const styles = StyleSheet.create({
   detailContainer: {
-    backgroundColor: charcoal,
+    backgroundColor: Colors.charcoal,
     flex: 1,
   },
   videoContainer: {
     height: '30%',
     minHeight: 200,
-    backgroundColor: black,
+    backgroundColor: Colors.black,
   },
   playBtnContainer: {
     marginTop: 16,

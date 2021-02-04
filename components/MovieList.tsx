@@ -10,7 +10,7 @@ import {
 import {Navigation} from 'react-native-navigation';
 import {NavigationContext} from 'react-native-navigation-hooks';
 import {useMediaTypeSelection} from '../context/MediaTypeSelectionContext';
-import {slateGray} from '../styles/colors';
+import Colors from '../styles/colors';
 import {globalStyle} from '../styles/global';
 import {typography} from '../styles/typography';
 import {ListOption} from '../types/ListOption.type';
@@ -37,7 +37,7 @@ const MovieList = ({data, horizontal = true}: Props) => {
 
   const renderItem = ({item}) => (
     <TouchableHighlight
-      underlayColor={slateGray}
+      underlayColor={Colors.slateGray}
       style={styles.touchable}
       onPress={() => onPress(item)}>
       <View style={globalStyle.posterContainer}>

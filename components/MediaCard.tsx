@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import {Image, TouchableHighlight} from 'react-native';
 import {Navigation} from 'react-native-navigation';
 import {NavigationContext} from 'react-native-navigation-hooks';
-import {slateGray} from '../styles/colors';
+import Colors from '../styles/colors';
 import {globalStyle} from '../styles/global';
 import {getImageUrl} from '../util/api';
 
@@ -24,7 +24,7 @@ const MediaCard = ({item}: Props) => {
 
   return (
     <TouchableHighlight
-      underlayColor={slateGray}
+      underlayColor={Colors.slateGray}
       onPress={onPress}
       style={globalStyle.posterContainer}>
       <Image

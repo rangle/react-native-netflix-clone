@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 import MediaResults from '../components/MediaResults';
-import {charcoal, mediumGray, slateGray} from '../styles/colors';
+import Colors from '../styles/colors';
 import {globalStyle} from '../styles/global';
 import {typography} from '../styles/typography';
 import {SearchResult} from '../types/Search.type';
@@ -36,11 +36,11 @@ const Search = () => {
         <View style={styles.searchInput}>
           <TextInput
             placeholder="Search"
-            placeholderTextColor={slateGray}
+            placeholderTextColor={Colors.slateGray}
             value={searchText}
             onChangeText={(text) => setSearchText(text)}
             clearButtonMode="while-editing"
-            selectionColor={slateGray}
+            selectionColor={Colors.slateGray}
             style={styles.textInput}
           />
         </View>
@@ -64,11 +64,11 @@ Search.options = {
 const styles = StyleSheet.create({
   searchContainer: {
     ...globalStyle.container,
-    backgroundColor: charcoal,
+    backgroundColor: Colors.charcoal,
     flex: 1,
   },
   searchInput: {
-    backgroundColor: mediumGray,
+    backgroundColor: Colors.mediumGray,
     lineHeight: 24,
     marginTop: 8,
     marginBottom: 16,
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     padding: 4,
   },
   textInput: {
-    color: charcoal,
+    color: Colors.charcoal,
     height: 30,
   },
   label: {

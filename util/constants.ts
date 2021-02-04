@@ -24,12 +24,12 @@ export const homeLists: ListOption[] = [
   },
   {
     mediaType: MediaTypes.MOVIE,
-    id: 'top_rated',
-    title: 'Top Rated Movies',
+    id: 'upcoming',
+    title: 'Upcoming Movies',
   },
   {
     mediaType: MediaTypes.TV,
-    id: 'top_rated',
-    title: 'Top Rated TV Shows',
+    id: 'airing_today',
+    title: 'New Episodes',
   },
 ];

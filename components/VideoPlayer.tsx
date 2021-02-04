@@ -2,7 +2,7 @@ import {useDeviceOrientation} from '@react-native-community/hooks';
 import React, {useEffect, useReducer} from 'react';
 import {ActivityIndicator, StyleSheet, Text, View} from 'react-native';
 import YouTube from 'react-native-youtube';
-import {red} from '../styles/colors';
+import Colors from '../styles/colors';
 import {Media} from '../types/Media.type';
 import {Video} from '../types/Video.type';
 import {getVideos} from '../util/api';
@@ -89,7 +89,10 @@ const VideoPlayer = ({
     <Text>Error: {error.message}</Text>
   ) : (
     <View style={styles.ActivityIndicatorContainer}>
-      <ActivityIndicator size={isFullscreen ? 'large' : 'small'} color={red} />
+      <ActivityIndicator
+        size={isFullscreen ? 'large' : 'small'}
+        color={Colors.red}
+      />
     </View>
   );
 };

@@ -7,7 +7,7 @@ import {
   TouchableHighlight,
   View,
 } from 'react-native';
-import {mediumGray, slateGray} from '../styles/colors';
+import Colors from '../styles/colors';
 
 interface Props {
   title: string;
@@ -35,7 +35,7 @@ const Button = ({
       accessibilityRole="button"
       disabled={disabled}
       onPress={onPress}
-      underlayColor={link ? 'transparent' : slateGray}>
+      underlayColor={link ? 'transparent' : Colors.slateGray}>
       <View style={buttonStyles}>
         <Text style={[textStyles, active ? styles.active : {}]}>
           {formattedTitle}
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     margin: 8,
   },
   active: {
-    color: mediumGray,
+    color: Colors.mediumGray,
   },
 });
 

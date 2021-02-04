@@ -1,4 +1,5 @@
-import React from 'react';
+import {useNetInfo} from '@react-native-community/netinfo';
+import React, {useEffect} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -6,14 +7,28 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
+import {Navigation} from 'react-native-navigation';
 import Billboard from '../components/Billboard';
 import MovieList from '../components/MovieList';
 import {MediaTypeSelectionProvider} from '../context/MediaTypeSelectionContext';
-import {charcoal} from '../styles/colors';
+import Colors from '../styles/colors';
 import {globalStyle} from '../styles/global';
 import {homeLists} from '../util/constants';
 
 const HomeScreen = () => {
+  const {isConnected} = useNetInfo();
+
+  useEffect(() => {
+    if (!isConnected) {
+      Navigation.showOverlay({
+        component: {
+          name: 'com.netflixClone.offlineToast',
+          passProps: {message: 'Offline! Please check your connection.'},
+        },
+      });
+    }
+  }, [isConnected]);
+
   return (
     <View style={styles.homeContainer}>
       <StatusBar barStyle="light-content" />
@@ -41,7 +56,7 @@ HomeScreen.options = {
 
 const styles = StyleSheet.create({
   homeContainer: {
-    backgroundColor: charcoal,
+    backgroundColor: Colors.charcoal,
     flex: 1,
     height: '100%',
   },

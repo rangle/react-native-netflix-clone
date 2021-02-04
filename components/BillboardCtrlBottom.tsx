@@ -3,7 +3,7 @@ import {StyleSheet, Text, TouchableHighlight, View} from 'react-native';
 import {Navigation} from 'react-native-navigation';
 import {NavigationContext} from 'react-native-navigation-hooks';
 import Button from '../components/Button';
-import {slateGray} from '../styles/colors';
+import Colors from '../styles/colors';
 import {typography} from '../styles/typography';
 import {ItemProp} from '../types/ItemProp.type';
 
@@ -13,7 +13,7 @@ const BillboardCtrlBottom = ({item}: ItemProp) => {
   return (
     <View style={styles.controlsContainer}>
       <TouchableHighlight
-        underlayColor={slateGray}
+        underlayColor={Colors.slateGray}
         onPress={() => console.log('TODO => Implement add to my list feature')}>
         <View style={styles.controlContainer}>
           <Text style={[typography.display3, styles.iconBig]}>+</Text>
@@ -32,7 +32,7 @@ const BillboardCtrlBottom = ({item}: ItemProp) => {
         }
       />
       <TouchableHighlight
-        underlayColor={slateGray}
+        underlayColor={Colors.slateGray}
         onPress={() =>
           Navigation.push(componentId, {
             component: {
